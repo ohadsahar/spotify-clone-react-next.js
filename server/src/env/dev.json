@@ -1,0 +1,17 @@
+{
+  "name": "dev",
+  "synchronize": true,
+  "production": false,
+  "logging": false,
+  "port": 3000,
+  "dbPort": 5432,
+  "ssl": false,
+  "logger": "tiny",
+  "dbHost": "localhost",
+  "dbUser": "postgres",
+  "dbPass": "Flower123",
+  "dbName": "reapp_dev",
+  "appName": "reApp",
+  "dropSchema": false,
+  "forgotPasswordUrl": "http://localhost:3000"
+}
