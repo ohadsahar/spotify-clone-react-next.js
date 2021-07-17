@@ -10,11 +10,11 @@ const constants = {
 		key: 'l23@#shfa1340**@dfg009Alk3#Vk_anlj',
 		ignoreExpiration: false
 	},
-	uploadDir: path.join(__dirname, '../'),
-	sendGrid: {
-		sgApiKey: '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',
-		fromAuth: 'osahar5@gmail.com'
-	},
+	spotifyAPI: {
+		uri: 'http://localhost:3005',
+		clientID: '88bcc79b09b040c6b8f86b914ddd739f',
+		clientSecret: '5c3521ec0d904cad8eefa45f4db81082'
+	}
 };
 
 export interface IConfig {
@@ -32,9 +32,10 @@ export interface IConfig {
 	bucketName: string;
 	appName: string;
 	ssl: boolean;
-	sendGrid: {
-		sgApiKey: string;
-		fromAuth: string;
+	spotifyAPI: {
+		uri: string;
+		clientID: string;
+		clientSecret: string
 	}
 	awsAuth: {
 		accessKeyId: string;

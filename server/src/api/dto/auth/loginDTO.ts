@@ -1,8 +1,7 @@
 import { IsEmail, IsString } from 'class-validator';
 
-export class SendOtpDTO {
+export class LoginDTO {
 
 	@IsString()
-	@IsEmail()
-	email: string;
+	code: string;
 }

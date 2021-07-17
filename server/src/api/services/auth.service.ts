@@ -1,39 +1,46 @@
 import { Service } from 'typedi';
-import { SendOtpDTO } from '../dto/auth/sendOtpDTO';
-import { EmailService } from './email.service';
-import { VerifySmsDTO } from '../dto/auth/verifySmsDTO';
-import { User } from '../models/user.model';
-import { ForbiddenError } from '../errors';
-import { VerificationService } from './verification.service';
-import { UserService } from './user.service';
 import { JwtService } from './jwt.service';
-import { ErrosType } from '../dto/util/enums';
+
+import getConfig from '../../config/env.config';
+import { LoginDTO } from '../dto/auth/loginDTO';
+import SpotifyWebApi from 'spotify-web-api-node';
 
 @Service()
 export class AuthService {
 
-	constructor(private emailService: EmailService, private verificationService: VerificationService,
-	            private userService: UserService, private jwtService: JwtService) {
+	constructor(
+		private jwtService: JwtService) {
 	}
 
-	async sendOTP(sendOTP: SendOtpDTO): Promise<User> {
-		const verificationCode = await this.verificationService.createVerificationCode(sendOTP);
-		await this.emailService.sendMail(sendOTP.email, '', 'sendOTP', null,
-			{ verificationCode: verificationCode });
-		return this.userService.register(sendOTP);
-
+	async login(loginDTO: LoginDTO): Promise<any> {
+		const spotifyApi = new SpotifyWebApi({
+			redirectUri: getConfig().spotifyAPI.uri,
+			clientId: getConfig().spotifyAPI.clientID,
+			clientSecret: getConfig().spotifyAPI.clientSecret
+		});
+		const result = await spotifyApi.authorizationCodeGrant(loginDTO.code);
+		return {
+			accessToken: result.body.access_token,
+			refreshToken: result.body.refresh_token,
+			expiresIn: result.body.expires_in
+		};
 	}
 
-	async verifySms(verifySmsDTO: VerifySmsDTO): Promise<any> {
-		const verificationCode = await this.verificationService.getVerificationCode(verifySmsDTO);
-		if (verificationCode) {
-			const existUser = await this.userService.getUserByEmail(verifySmsDTO.email);
-			return this.jwtService.createJWT(existUser.id);
-		} else {
-			throw new ForbiddenError(ErrosType.FORBIDDEN,
-				'Wrong code', new Error('Cannot verify sms'));
-		}
+	async refreshLogin(loginDTO: LoginDTO): Promise<any> {
+		const spotifyApi = new SpotifyWebApi({
+			redirectUri: getConfig().spotifyAPI.uri,
+			clientId: getConfig().spotifyAPI.clientID,
+			clientSecret: getConfig().spotifyAPI.clientSecret,
+			refreshToken: loginDTO.code
+		});
+		const result = await spotifyApi.refreshAccessToken();
+		return {
+			accessToken: result.body.access_token,
+			refreshToken: result.body.refresh_token,
+			expiresIn: result.body.expires_in,
+		};
 	}
+
 }
 
 
