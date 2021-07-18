@@ -1,20 +1,23 @@
-import Dashboard from "@/components/Dashboard/Dashboard";
 import Login from "@/components/Login/Login";
-import { useEffect, useState } from 'react';
-
+import { useRouter } from "next/dist/client/router";
+import { useEffect } from 'react';
 
 export default function Home() {
 
-  const [code, setCode] = useState(null);
-
+  const router = useRouter();
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get('code');
-    setCode(code);
+    if (code) {
+      router.replace({
+        pathname: '/dashboard',
+        query: { code: code }
+      });
+    }
   }, [])
 
   return (
     <div >
-      {code ? <Dashboard code={code} /> : <Login />}
+      <Login />
     </div>
   )
 }

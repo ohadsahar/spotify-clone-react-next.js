@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: 'Roboto', sans-serif;
+        height: 100%;
     }
 
     body {
@@ -14,7 +15,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     p {
-        margin: 0;
+        padding: 0;
+     margin:0;
     }
 
 `;
