@@ -1,24 +1,19 @@
 import { API_URL, SPOTIFY_CLIENT_ID } from '@/config/index';
-import { useEffect, useState } from 'react';
-import SpotifyWebApi from 'spotify-web-api-node';
-import useAuth from 'utils/useAuth';
-import {
-    DashboardWrapper, LyricsWrapper, PlayerWrapper, MainLayoutWrapper, TracksWrapper,
-    SideBarWrapper, SidebarItem
-} from './StyledDashboard';
-import TrackItem from '@/components/TrackItem/TrackItem';
-import Player from '@/components/Player/Player';
 import axios from 'axios';
-import SearchIcon from '@material-ui/icons/Search';
-import HomeIcon from '@material-ui/icons/Home';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import SpotifyWebApi from 'spotify-web-api-node';
+import {
+    DashboardWrapper, MainLayoutWrapper
+} from './StyledDashboard';
 
 const spotifyApi = new SpotifyWebApi({
     clientId: SPOTIFY_CLIENT_ID
 })
 
-const Dashboard = ({ code }) => {
+const Dashboard = () => {
 
-    const accessToken = useAuth(code);
+    const accessToken = useSelector(state => state.auth.accessToken);
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [playingTrack, setPlayingTrack] = useState();
@@ -48,7 +43,7 @@ const Dashboard = ({ code }) => {
             }
         }));
         return () => cancel = true;
-    }, [search, accessToken])
+    }, [search, accessToken]);
 
 
     useEffect(async () => {
@@ -70,35 +65,23 @@ const Dashboard = ({ code }) => {
     }
     return (
         <DashboardWrapper>
-            {/* <SideBarWrapper>
-                <SidebarItem>
-                    <HomeIcon className="home-icon" />
-                    <p>Home</p>
-                </SidebarItem>
-                <SidebarItem >
-                    <SearchIcon className="search-icon" />
-                    <p>Search</p>
-                    <input type="text" placeholder="Search songs" onChange={(e) => setSearch(e.target.value)} />
-                </SidebarItem>
-            </SideBarWrapper> */}
-
+            <p>Last Invites</p>
             <MainLayoutWrapper>
-                <TracksWrapper>
+                {/* <TracksWrapper>
                     {searchResults.map(track => (
                         <TrackItem chooseTrack={chooseTrack} track={track} key={track.uri} />
                     ))}
-                </TracksWrapper>
-                <LyricsWrapper>
+                </TracksWrapper> */}
+                {/* <LyricsWrapper>
                     {searchResults.length === 0 && lyrics && (
                         <p className="lyrics">{lyrics}</p>
                     )}
                 </LyricsWrapper>
-                <PlayerWrapper>
+                 <PlayerWrapper>
                     <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
-                </PlayerWrapper>
+                </PlayerWrapper> 
+                 */}
             </MainLayoutWrapper>
-
-
         </DashboardWrapper>
     )
 }

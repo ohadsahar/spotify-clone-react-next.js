@@ -1,16 +1,12 @@
 import Dashboard from "@/components/Dashboard/Dashboard";
-import { useRouter } from "next/router";
-import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 const dashboard = () => {
 
-    const router = useRouter();
-    const [code, setCode] = useState(null);
-    useEffect(() => {
-        setCode(router.query.code);
-    }, []);
+    const accessToken = useSelector(state => state.auth.accessToken);
     return (
-        <div>
-            {code ? <Dashboard code={code} /> : <p>Loading</p>}
+        <div style={{ display: 'flex' }}>
+            {accessToken ? <Dashboard /> : <p>Loading</p>}
         </div>
     )
 }

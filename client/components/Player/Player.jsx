@@ -1,13 +1,16 @@
-import SpotifyPlayer from "react-spotify-web-playback";
 import { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
+import SpotifyPlayer from "react-spotify-web-playback";
+const Player = () => {
 
-const Player = ({ accessToken, trackUri }) => {
-
+    const accessToken = useSelector(state => state.auth.accessToken);
+    const track = useSelector(state => state.track);
     const [play, setPlay] = useState(false);
+    console.log(track, play);
 
     useEffect(() => {
         setPlay(true);
-    }, [trackUri])
+    }, [track])
 
     if (!accessToken) return null;
     return (
@@ -18,7 +21,7 @@ const Player = ({ accessToken, trackUri }) => {
             callback={state => {
                 if (!state.isPlaying) setPlay(false);
             }}
-            uris={trackUri ? [trackUri] : []}
+            uris={track?.uri ? [track?.uri] : []}
         />
     )
 }

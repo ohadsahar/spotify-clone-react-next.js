@@ -19,6 +19,20 @@ export const GlobalStyle = createGlobalStyle`
      margin:0;
     }
 
+    .PlayerRSWP {
+        background-color: #191414 !important;
+        min-height: 4.5rem !important;
+    }
+
+    .rswp__toggle {
+        color: white !important;
+    }
+
+    .__nnvdcq p:first-child {
+        color:white !important;
+    }
+   
+
 `;
 
 export default GlobalStyle;

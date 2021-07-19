@@ -1,6 +1,6 @@
 export default {
     colors: {
-        main: 'green',
-        secondary: 'black'
+        main: '#191414',
+        secondary: '#1cd05f'
     }
 }

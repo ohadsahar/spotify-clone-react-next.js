@@ -1,15 +1,27 @@
-import { LayoutWrapper, SideContentWrapper, MainContentWrapper } from './StyledLayout';
+import Player from '@/components/Player/Player';
 import Sidenavbar from '@/components/Sidenavbar/Sidenavbar';
+import { useSelector } from 'react-redux';
+import { CurrentLayout, LayoutWrapper, MainContentWrapper, PlayerWrapper, SideContentWrapper } from './StyledLayout';
 const Layout = ({ children }) => {
+
+    const accessToken = useSelector(state => state.auth.accessToken);
+
     return (
         <LayoutWrapper>
-            <SideContentWrapper>
-                <Sidenavbar />
-            </SideContentWrapper>
             <MainContentWrapper>
-                {children}
-            </MainContentWrapper>
-        </LayoutWrapper>
+                {
+                    accessToken ? <SideContentWrapper>
+                        <Sidenavbar />
+                    </SideContentWrapper> : null
+                }
+                <CurrentLayout>
+                    {children}
+                </CurrentLayout>
+            </MainContentWrapper >
+            <PlayerWrapper>
+                <Player />
+            </PlayerWrapper>
+        </LayoutWrapper >
     )
 }
 

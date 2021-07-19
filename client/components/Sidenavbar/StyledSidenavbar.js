@@ -1,20 +1,15 @@
 import styled from 'styled-components';
 
-export const SideBarWrapper = styled.section`
-   flex-basis: 20%;
+export const SideBarWrapper = styled.div`
    background-color: black;
-   height: 100vh;
+    height: 100%;
 `;
 
-export const SidebarItem = styled.section`
+export const SidebarItem = styled.div`
     display: flex;
     align-items: center;
     padding: .5rem;
     cursor: pointer;
-
-    /* background-color: rgb(153 153 153);
-    color: white; */
-
 
      .search-icon {
         color: grey;
