@@ -1,13 +1,23 @@
 import Dashboard from "@/components/Dashboard/Dashboard";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-const dashboard = () => {
+import { getNewReleases } from "@/store/actions/track.actions";
+import { DashboardWrapper } from "@/components/Dashboard/StyledDashboard";
 
+const dashboard = () => {
     const accessToken = useSelector(state => state.auth.accessToken);
+    const dispatch = useDispatch();
+
+    useEffect(async () => {
+        if (!accessToken) return;
+        dispatch(getNewReleases(accessToken));
+    }, [accessToken]);
+
     return (
-        <div style={{ display: 'flex' }}>
+        <DashboardWrapper>
             {accessToken ? <Dashboard /> : <p>Loading</p>}
-        </div>
+        </DashboardWrapper>
+
     )
 }
 

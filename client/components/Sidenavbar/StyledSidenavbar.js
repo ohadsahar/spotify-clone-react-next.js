@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const SideBarWrapper = styled.div`
    background-color: black;
     height: 100%;
+    padding: .5rem;
 `;
 
 export const SidebarItem = styled.div`

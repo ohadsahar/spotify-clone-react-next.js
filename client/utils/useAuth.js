@@ -27,7 +27,7 @@ export default function useAuth(code) {
             try {
                 if (!refreshToken || !expiresIn) return;
                 const result = await axios.post(`${API_URL}auth/refreshLogin`, { code: refreshToken });
-                console.log(result);
+
                 window.history.pushState([], null, '/');
                 setAccessToken(result.data.data.accessToken);
                 setExpiresIn(result.data.data.expiresIn);

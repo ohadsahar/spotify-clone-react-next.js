@@ -6,7 +6,6 @@ const Player = () => {
     const accessToken = useSelector(state => state.auth.accessToken);
     const track = useSelector(state => state.track);
     const [play, setPlay] = useState(false);
-    console.log(track, play);
 
     useEffect(() => {
         setPlay(true);

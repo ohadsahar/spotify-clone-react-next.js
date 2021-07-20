@@ -8,7 +8,7 @@ const TrackItem = ({ track, chooseTrack }) => {
         <TrackItemWrapper onClick={handleClick}>
             <img src={track.albumUrl} />
             <TrackInfo>
-                <p>{track.title}</p>
+                <p className="title">{track.title}</p>
                 <p className="muted">By {track.artist}</p>
             </TrackInfo>
         </TrackItemWrapper>

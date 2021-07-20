@@ -11,11 +11,10 @@ const ArtistCard = ({ artist }) => {
     const dispatch = useDispatch();
     const onPlay = () => {
         const track = { uri: artist.firstTrack };
-        setPlay(play != play);
-        console.log(play);
+        // setPlay(play != play);
+
         dispatch(setCurrentTrack(track));
     }
-    console.log(artist);
     return (
         <ArtistsCardWrapper>
             <ArtistInfoWrapper>

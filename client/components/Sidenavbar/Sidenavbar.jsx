@@ -7,17 +7,17 @@ const Sidenavbar = () => {
     const router = useRouter();
 
     const handleRoute = (navigateTo) => {
-        router.push('/search-results');
+        router.push(navigateTo);
     }
     return (
         <SideBarWrapper>
-            <SidebarItem>
+            <SidebarItem onClick={() => handleRoute('/dashboard')}>
                 <HomeIcon className="home-icon" />
                 <p>Home</p>
             </SidebarItem>
-            <SidebarItem >
+            <SidebarItem onClick={() => handleRoute('/search-results')}>
                 <SearchIcon className="search-icon" />
-                <p onClick={() => handleRoute('Search')}>Search</p>
+                <p >Search</p>
             </SidebarItem>
         </SideBarWrapper>
     )

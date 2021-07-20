@@ -5,19 +5,24 @@ export const SearchWrapper = styled.div`
   padding:.5rem;
   flex-direction: column;
   width: 100%;
+  height: 98vh;
+  max-height: 96vh;
    
    h1 {
      color: white;
    }
 `;
 
-export const SearchInput = styled.input`
-    border-radius: 16px;
+export const SearchInputWrapper = styled.div`
+ input {
+  border-radius: 16px;
     border: none;
     width: 40%;
     outline: none;
     padding: .5rem;
+ }
 `;
+
 
 export const SearchResultsWrapper = styled.div`
     overflow-y: scroll;

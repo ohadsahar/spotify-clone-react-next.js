@@ -1,5 +1,5 @@
 import SearchResult from '@/components/SearchResult/SearchResult';
-import { SearchInput, SearchResultsWrapper, SearchWrapper } from '@/components/SearchResult/StyledSearchResult';
+import { SearchInputWrapper, SearchResultsWrapper, SearchWrapper } from '@/components/SearchResult/StyledSearchResult';
 import { SPOTIFY_CLIENT_ID } from '@/config/index';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -23,8 +23,6 @@ const SearchResults = () => {
     }, [accessToken]);
 
     useEffect(async () => {
-        let cancel = false;
-        if (cancel) return;
         if (!search) return setSearchResults([]);
         if (!accessToken) return;
         const result = await spotifyApi.searchTracks(search);
@@ -34,7 +32,6 @@ const SearchResults = () => {
             if (image.height < smallest.height) return image;
             return smallest;
         }, artistInfo.body.images[0]);
-        console.log(result.body.tracks.items[0].uri);
         setCurrentArtist(
             { artistName: artistInfo.body.name, href: artistInfo.body.href, image: smallestImage.url, type: artistInfo.body.type, firstTrack: result.body.tracks.items[0].uri }
         );
@@ -50,17 +47,22 @@ const SearchResults = () => {
                 albumUrl: smallestImage.url
             }
         }));
-        return () => cancel = true;
     }, [search, accessToken]);
 
 
     return (
         <SearchWrapper>
-            <SearchInput type="text" placeholder="Artist, Songs, Podcasts" onChange={(e) => setSearch(e.target.value)} />
-            <ArtistCard artist={artist} />
-            <SearchResultsWrapper>
-                <SearchResult searchResults={searchResults} />
-            </SearchResultsWrapper>
+            <SearchInputWrapper >
+                <input type="text" placeholder="Artist, Songs, Podcasts" onChange={(e) => setSearch(e.target.value)} />
+            </SearchInputWrapper>
+            {searchResults.length > 0 && (
+                <div>
+                    <ArtistCard artist={artist} />
+                    <SearchResultsWrapper>
+                        <SearchResult searchResults={searchResults} />
+                    </SearchResultsWrapper>
+                </div>
+            )};
         </SearchWrapper>
     )
 }

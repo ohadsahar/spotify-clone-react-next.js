@@ -8,10 +8,10 @@ height: 150px;
 width: 50%;
 position: relative;
 border-radius: 8px;
-
+transition: .5s ease-in-out;
 &:hover {
     transition: .5s ease-in-out;
-    background-color: #cccccc26;
+    background-color: ${props => props.theme.colors.hoverCardColor}
 }
 `;
 
@@ -19,8 +19,7 @@ export const ArtistInfoWrapper = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 15%;
+    align-items: start;
 
     .title {
         font-size: 24px;

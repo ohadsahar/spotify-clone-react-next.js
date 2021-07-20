@@ -1,1 +1,2 @@
 export const SET_CURRENT_TRACK = 'SET_CURRENT_TRACK';
+export const GET_NEW_RELEASES = 'GET_NEW_RELEASES';

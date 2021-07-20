@@ -31,6 +31,12 @@ export const GlobalStyle = createGlobalStyle`
     .__nnvdcq p:first-child {
         color:white !important;
     }
+    
+    ._SliderRSWP {
+        span {
+            background-color:#1cd05f !important;
+        }
+    }
    
 
 `;
