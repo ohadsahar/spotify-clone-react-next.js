@@ -11,8 +11,6 @@ const ArtistCard = ({ artist }) => {
     const dispatch = useDispatch();
     const onPlay = () => {
         const track = { uri: artist.firstTrack };
-        // setPlay(play != play);
-
         dispatch(setCurrentTrack(track));
     }
     return (
@@ -25,9 +23,7 @@ const ArtistCard = ({ artist }) => {
             <IconWrapper>
                 {!play ? <PlayArrowIcon className="play-icon" onClick={onPlay}></PlayArrowIcon> :
                     <StopIcon className="play-icon" onClick={onPlay}></StopIcon>}
-
             </IconWrapper>
-
         </ArtistsCardWrapper>
     )
 }

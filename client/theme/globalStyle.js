@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         font-family: 'Roboto', sans-serif;
         height: 100%;
+        overflow-y: hidden;
     }
 
     body {
@@ -22,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     .PlayerRSWP {
         background-color: #191414 !important;
         min-height: 4.5rem !important;
+        height: 8vh;
     }
 
     .rswp__toggle {

@@ -26,7 +26,7 @@ const SearchResults = () => {
         if (!search) return setSearchResults([]);
         if (!accessToken) return;
         const result = await spotifyApi.searchTracks(search);
-        const artistID = result.body.tracks.items[0].artists[0].id;
+        const artistID = result.body.tracks.items[0]?.artists[0].id;
         const artistInfo = await spotifyApi.getArtist(artistID);
         const smallestImage = artistInfo.body.images.reduce((smallest, image) => {
             if (image.height < smallest.height) return image;
@@ -56,7 +56,7 @@ const SearchResults = () => {
                 <input type="text" placeholder="Artist, Songs, Podcasts" onChange={(e) => setSearch(e.target.value)} />
             </SearchInputWrapper>
             {searchResults.length > 0 && (
-                <div>
+                <div style={{ 'overflow-y': 'hidden' }}>
                     <ArtistCard artist={artist} />
                     <SearchResultsWrapper>
                         <SearchResult searchResults={searchResults} />

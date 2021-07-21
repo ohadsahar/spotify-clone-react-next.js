@@ -1,8 +1,8 @@
 import { SET_CURRENT_TRACK } from "../types/track.types";
 
-const initialState = [
-    { currentTrack: '', albums: [] }
-];
+const initialState =
+    { currentTrack: '', currentAlbum: null, albums: [] }
+
 
 export const trackReducer = (state = initialState, action) => {
     const { type, payload } = action;
@@ -10,10 +10,12 @@ export const trackReducer = (state = initialState, action) => {
 
         case 'SET_CURRENT_TRACK':
             console.log(payload);
-            return { albums: [], currentTrack: payload };
+            return { ...state, albums: [], currentTrack: payload };
         case 'GET_NEW_RELEASES':
             console.log(payload);
-            return { albums: payload, currentTrack: '' }
+            return { ...state, albums: payload, currentTrack: '' }
+        case 'GET_CURRENT_ALBUM':
+            return { ...state, currentAlbum: payload }
         default:
             return state;
     }

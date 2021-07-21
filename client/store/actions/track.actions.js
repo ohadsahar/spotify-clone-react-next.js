@@ -1,4 +1,4 @@
-import { GET_NEW_RELEASES, SET_CURRENT_TRACK } from "../types/track.types"
+import { GET_CURRENT_ALBUM, GET_NEW_RELEASES, SET_CURRENT_TRACK } from "../types/track.types"
 import SpotifyWebApi from 'spotify-web-api-node';
 import { SPOTIFY_CLIENT_ID } from '@/config/index';
 
@@ -14,4 +14,10 @@ export const getNewReleases = (accessToken) => async dispatch => {
     spotifyApi.setAccessToken(accessToken);
     const result = await spotifyApi.getNewReleases({ limit: 5, offset: 0, country: 'IL' });
     dispatch({ type: GET_NEW_RELEASES, payload: result.body.albums.items });
+}
+
+export const getCurrentAlbum = (id, accessToken) => async dispatch => {
+    spotifyApi.setAccessToken(accessToken);
+    const result = await spotifyApi.getAlbum(id);
+    dispatch({ type: GET_CURRENT_ALBUM, payload: result.body });
 }
