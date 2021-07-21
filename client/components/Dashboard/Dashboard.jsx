@@ -5,7 +5,7 @@ import {
 } from './StyledDashboard';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCurrentAlbum } from '@/store/actions/track.actions';
+import { getCurrentAlbum, setCurrentTrack } from '@/store/actions/track.actions';
 
 
 const Dashboard = () => {
@@ -46,15 +46,19 @@ const Dashboard = () => {
             const currentTrackArtists = track.artists.map((artist) => {
                 return artist.name;
             });
-            return { name: track.name, url: track.uri, artists: currentTrackArtists };
+            return { name: track.name, uri: track.uri, artists: currentTrackArtists };
         })
         const albumToShow = { name: album.name, tracks: albumTracks, albumImage: smallestImage.url };
 
         setCurrentAlbum(albumToShow);
-        console.log(albumToShow);
     }, [album]);
+
     const getCurrentAlbumSongs = (albumID) => {
         dispatch(getCurrentAlbum(albumID, accessToken));
+    }
+
+    const changeTrack = (track) => {
+        dispatch(setCurrentTrack(track));
     }
 
     return (
@@ -62,7 +66,8 @@ const Dashboard = () => {
             <h1>New Albums Releases</h1>
             <AlbumsWrapper>
                 {albumsToShow.length > 0 && albumsToShow.map(currentAlbum => (
-                    <AlbumWrapper key={currentAlbum.id} onClick={() => getCurrentAlbumSongs(currentAlbum.id)}>
+                    <AlbumWrapper key={currentAlbum.id}
+                        onClick={() => getCurrentAlbumSongs(currentAlbum.id)}>
                         <img src={currentAlbum.albumImage} />
                         <ArtistInfoWrapper>
                             <p className="title">{currentAlbum.albumName}</p>
@@ -74,7 +79,8 @@ const Dashboard = () => {
                 <h2>Current Album - {currentAlbum?.name}</h2>
                 <TracksWrapper>
                     {currentAlbum && currentAlbum.tracks.map((track, index) => (
-                        <TrackWrapper key={index} >
+                        <TrackWrapper key={index}
+                            onClick={() => changeTrack(track)}>
                             <p className="track-id">{index + 1}</p>
                             <img src={currentAlbum?.albumImage} />
                             <TrackInfo>

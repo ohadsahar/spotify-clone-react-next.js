@@ -66,8 +66,9 @@ export const CurrentAlbumWrapper = styled.div`
 `;
 
 export const TracksWrapper = styled.div`
-    max-height: calc(100vh - 30vh);
+    max-height: 70vh;
     overflow-y: scroll;
+    cursor: pointer;
 `;
 
 export const TrackWrapper = styled.div`
