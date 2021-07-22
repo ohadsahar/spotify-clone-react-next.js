@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
-import { TrackInfo, TrackItemWrapper } from './StyledTrackItem';
-const TrackItem = ({ track, chooseTrack }) => {
+import { TrackItemWrapper, TrackInfo } from './StyledPlayListPageItem';
 
+const PlayListPageItem = ({ track, chooseTrack }) => {
     const currentTrack = useSelector(state => state.track.currentTrack);
+
 
     const handleClick = () => {
         chooseTrack(track);
@@ -17,12 +18,11 @@ const TrackItem = ({ track, chooseTrack }) => {
     }
 
     return (
-        <TrackItemWrapper onClick={handleClick}>
-            <img src={track.albumUrl} />
-            <TrackInfo active={currentTrack.title === track.title}>
+        <TrackItemWrapper onClick={() => handleClick(track)}>
+            <img src={track.image} />
+            <TrackInfo active={currentTrack.name === track.name}>
                 <div>
-                    <p className="title">{track.title}</p>
-                    <p className="muted">By {track.artist}</p>
+                    <p className="title">{track.name}</p>
                 </div>
                 <p className="time">{formatMinutes(track.duration)}</p>
             </TrackInfo>
@@ -30,4 +30,4 @@ const TrackItem = ({ track, chooseTrack }) => {
     )
 }
 
-export default TrackItem
+export default PlayListPageItem

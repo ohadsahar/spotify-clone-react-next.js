@@ -1,9 +1,8 @@
 import { PlaylistItemWrapper, PlaylistInfoWrapper } from "./StyledPlaylistItem"
 
-const PlaylistItem = ({ playlist }) => {
-    console.log(playlist)
+const PlaylistItem = ({ playlist, navigateTo }) => {
     return (
-        <PlaylistItemWrapper >
+        <PlaylistItemWrapper onClick={() => navigateTo(playlist)}>
             <img src={playlist.playlistImage} />
             <PlaylistInfoWrapper>
                 <p className="title">{playlist.name}</p>

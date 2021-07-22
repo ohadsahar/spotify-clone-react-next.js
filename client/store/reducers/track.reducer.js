@@ -1,15 +1,13 @@
-import { SET_CURRENT_TRACK } from "../types/track.types";
-
 const initialState =
 {
     currentTrack: [],
-    currentAlbum: null,
     playlists: [],
     albums: [],
     searchedTracks: [],
-    artistInfo: {}
+    playlistTracks: [],
+    artistInfo: {},
+    currentAlbum: null,
 }
-
 
 export const trackReducer = (state = initialState, action) => {
     const { type, payload } = action;
@@ -24,6 +22,8 @@ export const trackReducer = (state = initialState, action) => {
             return { ...state, searchedTracks: payload.searchedTracks, artistInfo: payload.artistInfo };
         case 'GET_NEW_PLAYLISTS':
             return { ...state, playlists: payload };
+        case 'GET_PLAYLIST_TRACKS':
+            return { ...state, playlistTracks: payload };
         default:
             return state;
     }

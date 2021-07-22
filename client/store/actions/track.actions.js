@@ -1,4 +1,4 @@
-import { GET_CURRENT_ALBUM, GET_NEW_PLAYLISTS, GET_NEW_RELEASES, GET_SEARCHED_RESULT, SET_CURRENT_TRACK } from "../types/track.types"
+import { GET_CURRENT_ALBUM, GET_NEW_PLAYLISTS, GET_NEW_RELEASES, GET_PLAYLIST_TRACKS, GET_SEARCHED_RESULT, SET_CURRENT_TRACK } from "../types/track.types"
 import SpotifyWebApi from 'spotify-web-api-node';
 import { SPOTIFY_CLIENT_ID } from '@/config/index';
 
@@ -36,4 +36,10 @@ export const getSearchedResults = (accessToken, searchValue) => async dispatch =
     const artistID = result.body.tracks.items[0]?.artists[0].id;
     const artistInfo = await spotifyApi.getArtist(artistID);
     dispatch({ type: GET_SEARCHED_RESULT, payload: { searchedTracks: result, artistInfo: artistInfo } });
+}
+
+export const getPlaylistTracks = (accessToken, playlistID) => async dispatch => {
+    spotifyApi.setAccessToken(accessToken);
+    const result = await spotifyApi.getPlaylist(playlistID);
+    dispatch({ type: GET_PLAYLIST_TRACKS, payload: result.body.tracks.items });
 }

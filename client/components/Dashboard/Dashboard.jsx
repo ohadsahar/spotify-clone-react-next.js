@@ -45,12 +45,13 @@ const Dashboard = () => {
                 if (image.height > smallest.height) return image
                 return smallest;
             }, playlist.images[0]);
+            console.log(playlist);
             return {
                 name: playlist.name,
                 description: playlist.description,
                 playlistImage: smallestImage.url,
                 total: playlist.tracks.total,
-                uri: playlist.uri
+                uri: playlist.id
             }
         });
         setPlaylists(playlists);
@@ -60,6 +61,8 @@ const Dashboard = () => {
         dispatch(getCurrentAlbum(albumID, accessToken));
         router.push('/album-page');
     }
+
+
 
     return (
         <DashboardWrapper>
