@@ -5,6 +5,7 @@ const initialState =
     albums: [],
     searchedTracks: [],
     playlistTracks: [],
+    currentPlaylist: {},
     artistInfo: {},
     currentAlbum: null,
 }
@@ -14,6 +15,8 @@ export const trackReducer = (state = initialState, action) => {
     switch (type) {
         case 'SET_CURRENT_TRACK':
             return { ...state, currentTrack: payload };
+        case 'SET_CURRENT_PLAYLIST':
+            return { ...state, currentPlaylist: payload };
         case 'GET_NEW_RELEASES':
             return { ...state, albums: payload, currentTrack: '' }
         case 'GET_CURRENT_ALBUM':

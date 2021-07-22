@@ -45,7 +45,6 @@ const Dashboard = () => {
                 if (image.height > smallest.height) return image
                 return smallest;
             }, playlist.images[0]);
-            console.log(playlist);
             return {
                 name: playlist.name,
                 description: playlist.description,

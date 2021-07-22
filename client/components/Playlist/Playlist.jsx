@@ -2,13 +2,16 @@ import { PlaylistWrapper } from './StyledPlaylist';
 import { useEffect } from 'react';
 import PlaylistItem from '../PlaylistItem/PlaylistItem';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { setCurrentPlaylist } from '@/store/actions/track.actions';
 
 const Playlist = ({ playlists }) => {
 
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const navigateTo = (playlist) => {
-        console.log(playlist);
+        dispatch(setCurrentPlaylist(playlist));
         router.push({
             pathname: '/playlist',
             query: { playlistID: playlist.uri },

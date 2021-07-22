@@ -62,8 +62,6 @@ const SearchResults = () => {
             }
         });
         setSearchResults(searchResults);
-        console.log(artist);
-        console.log(searchResults);
     }
 
     return (

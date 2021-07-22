@@ -3,7 +3,7 @@ import { TrackItemWrapper, TrackInfo } from './StyledPlayListPageItem';
 
 const PlayListPageItem = ({ track, chooseTrack }) => {
     const currentTrack = useSelector(state => state.track.currentTrack);
-
+    console.log(currentTrack.name);
 
     const handleClick = () => {
         chooseTrack(track);

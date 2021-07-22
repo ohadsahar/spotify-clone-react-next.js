@@ -4,7 +4,6 @@ import { setCurrentTrack, } from "@/store/actions/track.actions";
 import { SearchWrapper } from './StyledSearchResult';
 
 const SearchResult = ({ searchResults }) => {
-    console.log(searchResults);
     const dispatch = useDispatch();
     const chooseTrack = (track) => {
         dispatch(setCurrentTrack(track));

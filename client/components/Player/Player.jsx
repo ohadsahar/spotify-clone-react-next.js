@@ -19,8 +19,6 @@ const Player = () => {
     const handleNextSong = () => {
         const tracks = currentAlbum.tracks.items;
         const index = tracks.findIndex((currentTrack) => currentTrack.uri === track.uri);
-        console.log(index);
-        console.log(currentAlbum.tracks.items.length);
         if (index + 1 <= currentAlbum.tracks.items.length) {
             dispatch(setCurrentTrack(currentAlbum.tracks.items[index + 1]));
         }

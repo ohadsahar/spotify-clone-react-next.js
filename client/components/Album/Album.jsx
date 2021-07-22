@@ -11,7 +11,6 @@ const Album = ({ currentAlbum, changeTrack }) => {
 
     useEffect(() => {
         if (!currentTrack) return;
-        console.log(currentAlbum);
         setCurrentTrackName(currentTrack.name);
     }, [currentTrack]);
 
