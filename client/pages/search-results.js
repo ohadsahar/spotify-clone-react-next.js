@@ -1,16 +1,12 @@
-import SearchResult from '@/components/SearchResult/SearchResult';
-import { SearchInputWrapper, SearchResultsWrapper, SearchWrapper } from '@/components/SearchResult/StyledSearchResult';
-import { SPOTIFY_CLIENT_ID } from '@/config/index';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import SpotifyWebApi from 'spotify-web-api-node';
 import ArtistCard from '@/components/ArtistCard/ArtistCard';
+import SearchResult from '@/components/SearchResult/SearchResult';
+import {
+    SearchInputWrapper, SearchMiniWrapper, SearchResultsWrapper,
+    SearchWrapper
+} from '@/components/SearchResult/StyledSearchResult';
 import { getSearchedResults } from '@/store/actions/track.actions';
-
-
-const spotifyApi = new SpotifyWebApi({
-    clientId: SPOTIFY_CLIENT_ID
-})
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SearchResults = () => {
     const [search, setSearch] = useState();
@@ -21,18 +17,6 @@ const SearchResults = () => {
     const artistInfo = useSelector(state => state.track.artistInfo);
     const dispatch = useDispatch();
 
-
-
-    useEffect(async () => {
-        if (!search) return setSearchResults([]);
-        if (!accessToken) return;
-        dispatch(getSearchedResults(accessToken, search));
-        if (!result || !artistInfo) return;
-        handleArtistInfo(artistInfo);
-        if (!result.body?.tracks) return;
-        handleSearchResults(result); (result);
-    }, [search, accessToken]);
-
     useEffect(() => {
         if (!result || !accessToken || !artistInfo) return;
         handleArtistInfo(artistInfo);
@@ -40,13 +24,23 @@ const SearchResults = () => {
         handleSearchResults(result);
     }, [])
 
+    useEffect(async () => {
+        if (!accessToken) return;
+        if (!search) return;
+        dispatch(getSearchedResults(accessToken, search));
+        if (!result || !artistInfo) return;
+        handleArtistInfo(artistInfo);
+        if (!result.body?.tracks) return;
+        handleSearchResults(result); (result);
+    }, [search, accessToken]);
+
+
     const handleArtistInfo = (artistInfo) => {
         if (artistInfo.body?.images) {
             const smallestImage = artistInfo.body.images.reduce((smallest, image) => {
                 if (image.height < smallest.height) return image;
                 return smallest;
             }, artistInfo.body.images[0]);
-            console.log(smallestImage);
             setCurrentArtist(
                 { artistName: artistInfo.body.name, href: artistInfo.body.href, image: smallestImage.url ?? '', type: artistInfo.body.type, firstTrack: result.body.tracks.items[0].uri }
             );
@@ -54,7 +48,7 @@ const SearchResults = () => {
     }
 
     const handleSearchResults = (result) => {
-        setSearchResults(result.body.tracks.items.map((track) => {
+        const searchResults = result.body.tracks.items.map((track) => {
             const smallestImage = track.album.images.reduce((smallest, image) => {
                 if (image.height < smallest.height) return image
                 return smallest;
@@ -63,9 +57,13 @@ const SearchResults = () => {
                 artist: track.artists[0].name,
                 title: track.name,
                 uri: track.uri,
-                albumUrl: smallestImage.url
+                albumUrl: smallestImage.url,
+                duration: track.duration_ms
             }
-        }));
+        });
+        setSearchResults(searchResults);
+        console.log(artist);
+        console.log(searchResults);
     }
 
     return (
@@ -74,12 +72,13 @@ const SearchResults = () => {
                 <input type="text" placeholder="Artist, Songs, Podcasts" onChange={(e) => setSearch(e.target.value)} />
             </SearchInputWrapper>
             {searchResults.length > 0 && (
-                <div style={{ 'overflow-y': 'hidden' }}>
+                <SearchMiniWrapper>
+                    {!search && result ? <p>Last search:</p> : null}
                     <ArtistCard artist={artist} />
                     <SearchResultsWrapper>
                         <SearchResult searchResults={searchResults} />
                     </SearchResultsWrapper>
-                </div>
+                </SearchMiniWrapper>
             )};
         </SearchWrapper>
     )

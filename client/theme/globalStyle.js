@@ -18,12 +18,12 @@ export const GlobalStyle = createGlobalStyle`
     p {
         padding: 0;
      margin:0;
+     color: white;
     }
 
     .PlayerRSWP {
         background-color: #191414 !important;
-        min-height: 4.5rem !important;
-        height: 8vh;
+        min-height: 6.5rem !important;
     }
 
     .rswp__toggle {

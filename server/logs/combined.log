@@ -4727,3 +4727,9 @@
 2021-07-21T14:36:27.744Z info: DB is connected
 2021-07-21T14:36:27.744Z info: localhost
 2021-07-21T14:36:27.747Z info: Server listening on port 3000. Enjoy!
+2021-07-22T14:24:35.306Z info: Starting server...
+2021-07-22T14:24:35.309Z info: Env: dev
+2021-07-22T14:24:35.458Z info: Initiating jwt
+2021-07-22T14:24:35.459Z info: DB is connected
+2021-07-22T14:24:35.459Z info: localhost
+2021-07-22T14:24:35.462Z info: Server listening on port 3000. Enjoy!

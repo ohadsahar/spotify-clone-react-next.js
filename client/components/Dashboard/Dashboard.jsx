@@ -1,20 +1,21 @@
-import { useSelector } from 'react-redux';
-import {
-    AlbumsWrapper, AlbumWrapper, DashboardWrapper, ArtistInfoWrapper,
-    TracksWrapper, TrackWrapper, CurrentAlbumWrapper, TrackInfo
-} from './StyledDashboard';
+import { getCurrentAlbum } from '@/store/actions/track.actions';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getCurrentAlbum, setCurrentTrack } from '@/store/actions/track.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import Playlist from '../Playlist/Playlist';
+import {
+    AlbumsWrapper, AlbumWrapper, ArtistInfoWrapper, DashboardWrapper
+} from './StyledDashboard';
 
 
 const Dashboard = () => {
     const data = useSelector(state => state.track.albums);
-    const album = useSelector(state => state.track.currentAlbum);
+    const playlistsToHandle = useSelector(state => state.track.playlists);
     const accessToken = useSelector(state => state.auth.accessToken);
     const [albumsToShow, setAlbumsToShow] = useState([]);
-    const [currentAlbum, setCurrentAlbum] = useState();
+    const [playlistsToShow, setPlaylists] = useState([]);
     const dispatch = useDispatch();
+    const router = useRouter();
 
     useEffect(() => {
         const albums = [];
@@ -36,29 +37,28 @@ const Dashboard = () => {
         setAlbumsToShow(albums);
     }, [data]);
 
-    useEffect(() => {
-        if (!album) return;
-        const smallestImage = album.images.reduce((smallest, image) => {
-            if (image.height < smallest.height) return image
-            return smallest
-        }, album.images[0]);
-        const albumTracks = album.tracks.items.map((track) => {
-            const currentTrackArtists = track.artists.map((artist) => {
-                return artist.name;
-            });
-            return { name: track.name, uri: track.uri, artists: currentTrackArtists };
-        })
-        const albumToShow = { name: album.name, tracks: albumTracks, albumImage: smallestImage.url };
 
-        setCurrentAlbum(albumToShow);
-    }, [album]);
+    useEffect(() => {
+        if (!playlistsToHandle) return;
+        const playlists = playlistsToHandle.map((playlist) => {
+            const smallestImage = playlist.images.reduce((smallest, image) => {
+                if (image.height > smallest.height) return image
+                return smallest;
+            }, playlist.images[0]);
+            return {
+                name: playlist.name,
+                description: playlist.description,
+                playlistImage: smallestImage.url,
+                total: playlist.tracks.total,
+                uri: playlist.uri
+            }
+        });
+        setPlaylists(playlists);
+    }, [playlistsToHandle]);
 
     const getCurrentAlbumSongs = (albumID) => {
         dispatch(getCurrentAlbum(albumID, accessToken));
-    }
-
-    const changeTrack = (track) => {
-        dispatch(setCurrentTrack(track));
+        router.push('/album-page');
     }
 
     return (
@@ -75,25 +75,12 @@ const Dashboard = () => {
                     </AlbumWrapper>
                 ))}
             </AlbumsWrapper>
-            {currentAlbum && <CurrentAlbumWrapper>
-                <h2>Current Album - {currentAlbum?.name}</h2>
-                <TracksWrapper>
-                    {currentAlbum && currentAlbum.tracks.map((track, index) => (
-                        <TrackWrapper key={index}
-                            onClick={() => changeTrack(track)}>
-                            <p className="track-id">{index + 1}</p>
-                            <img src={currentAlbum?.albumImage} />
-                            <TrackInfo>
-                                <p className="title">{track?.name}</p>
-                                {track.artists.map((artist) => (
-                                    <p className="muted">{artist}</p>
-                                ))}
-                            </TrackInfo>
-                        </TrackWrapper>
-                    ))}
-                </TracksWrapper>
-            </CurrentAlbumWrapper>
-            }
+            <h1>New Playlists</h1>
+            <div>
+                {playlistsToShow.length}
+                {playlistsToShow.length > 0 ? <Playlist playlists={playlistsToShow} /> : null}
+            </div>
+
         </DashboardWrapper >
     )
 }

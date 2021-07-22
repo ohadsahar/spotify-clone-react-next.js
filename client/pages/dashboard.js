@@ -1,7 +1,7 @@
 import Dashboard from "@/components/Dashboard/Dashboard";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getNewReleases } from "@/store/actions/track.actions";
+import { getNewPlaylists, getNewReleases } from "@/store/actions/track.actions";
 import { DashboardWrapper } from "@/components/Dashboard/StyledDashboard";
 
 const dashboard = () => {
@@ -11,6 +11,7 @@ const dashboard = () => {
     useEffect(async () => {
         if (!accessToken) return;
         dispatch(getNewReleases(accessToken));
+        dispatch(getNewPlaylists(accessToken));
     }, [accessToken]);
 
     return (

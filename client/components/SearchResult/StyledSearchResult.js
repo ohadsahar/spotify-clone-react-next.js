@@ -13,6 +13,15 @@ export const SearchWrapper = styled.div`
    }
 `;
 
+export const SearchMiniWrapper = styled.div`
+overflow-y: hidden;
+> p {
+  font-size: 1.25rem;
+ margin: 1rem .5rem;
+ font-weight: bold;
+ letter-spacing: 0.1ch;
+}
+`;
 export const SearchInputWrapper = styled.div`
  input {
   border-radius: 16px;
