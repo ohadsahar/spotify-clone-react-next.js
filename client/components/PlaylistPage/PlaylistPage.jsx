@@ -1,14 +1,14 @@
 import PlayListPageItem from '@/components/PlayListPageItem/PlayListPageItem';
-import { setCurrentTrack } from '@/store/actions/track.actions';
+import { setCurrentTrack } from '@/store/actions/player.actions';
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { PlaylistPageWrapper, ArtistPlayListWrapper } from './StyledPlaylistPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { ArtistPlayListWrapper, PlaylistPageWrapper } from './StyledPlaylistPage';
 
 const PlaylistPage = () => {
     const dispatch = useDispatch();
-    const playlistTracks = useSelector(state => state.track.playlistTracks);
     const [playlistTracksToShow, setPlaylistTracks] = useState();
-    const currentPlaylist = useSelector(state => state.track.currentPlaylist);
+    const playlistTracks = useSelector(state => state.playlist.playlistTracks);
+    const currentPlaylist = useSelector(state => state.playlist.currentPlaylist);
 
     useEffect(() => {
         if (!playlistTracks) return;
@@ -24,17 +24,17 @@ const PlaylistPage = () => {
                 image: smallestImage.url
             }
         });
-
         setPlaylistTracks(tracks);
     }, [playlistTracks]);
 
     const chooseTrack = (track) => {
         dispatch(setCurrentTrack(track));
     }
+
     return (
         <PlaylistPageWrapper>
             <div>
-                <ArtistPlayListWrapper>
+                <ArtistPlayListWrapper backgroundColor={currentPlaylist.backgroundColor}>
                     <p className="title">{currentPlaylist.name}</p>
                     <img src={currentPlaylist.playlistImage} />
                 </ArtistPlayListWrapper>
@@ -42,7 +42,6 @@ const PlaylistPage = () => {
                     <PlayListPageItem track={track} chooseTrack={chooseTrack} />
                 ))}
             </div>
-
         </PlaylistPageWrapper>
     )
 }

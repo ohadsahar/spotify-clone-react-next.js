@@ -1,0 +1,2 @@
+export const GET_CURRENT_ALBUM = 'GET_CURRENT_ALBUM';
+export const GET_NEW_RELEASES = 'GET_NEW_RELEASES';

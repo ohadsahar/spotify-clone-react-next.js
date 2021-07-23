@@ -1,6 +1,6 @@
 import TrackItem from "../TrackItem/TrackItem";
 import { useDispatch } from 'react-redux';
-import { setCurrentTrack, } from "@/store/actions/track.actions";
+import { setCurrentTrack } from '@/store/actions/player.actions';
 import { SearchWrapper } from './StyledSearchResult';
 
 const SearchResult = ({ searchResults }) => {

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 const Album = ({ currentAlbum, changeTrack }) => {
-    const currentTrack = useSelector(state => state.track.currentTrack);
+    const currentTrack = useSelector(state => state.player.currentTrack);
     const [currentTrackName, setCurrentTrackName] = useState();
 
     useEffect(() => {

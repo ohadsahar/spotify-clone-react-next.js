@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { TrackInfo, TrackItemWrapper } from './StyledTrackItem';
 const TrackItem = ({ track, chooseTrack }) => {
 
-    const currentTrack = useSelector(state => state.track.currentTrack);
+    const currentTrack = useSelector(state => state.player.currentTrack);
 
     const handleClick = () => {
         chooseTrack(track);

@@ -1,11 +1,11 @@
 import Album from '@/components/Album/Album';
-import { setCurrentTrack } from '@/store/actions/track.actions';
+import { setCurrentTrack } from '@/store/actions/player.actions';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 const AlbumPage = () => {
     const dispatch = useDispatch();
-    const album = useSelector(state => state.track.currentAlbum);
+    const album = useSelector(state => state.album.currentAlbum);
     const [currentAlbum, setCurrentAlbum] = useState();
 
     useEffect(() => {

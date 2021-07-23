@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import PlaylistItem from '../PlaylistItem/PlaylistItem';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import { setCurrentPlaylist } from '@/store/actions/track.actions';
+import { setCurrentPlaylist } from '@/store/actions/playlist.actions';
+;
 
 const Playlist = ({ playlists }) => {
 

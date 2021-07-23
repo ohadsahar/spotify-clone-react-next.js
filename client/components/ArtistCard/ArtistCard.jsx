@@ -1,17 +1,21 @@
-import { ArtistsCardWrapper, ArtistInfoWrapper, IconWrapper } from './StyledArtistsCard';
+import { setCurrentPlayerStatus, setCurrentTrack } from '@/store/actions/player.actions';
+import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import StopIcon from '@material-ui/icons/Stop';
-import { useDispatch } from 'react-redux';
-import { setCurrentTrack } from '@/store/actions/track.actions';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ArtistInfoWrapper, ArtistsCardWrapper, IconWrapper } from './StyledArtistsCard';
 
 const ArtistCard = ({ artist }) => {
 
-    const [play, setPlay] = useState(false);
+    const isPlaying = useSelector(state => state.player.play);
+    const currentTrack = useSelector(state => state.player.currentTrack);
     const dispatch = useDispatch();
     const onPlay = () => {
-        const track = { uri: artist.firstTrack };
-        dispatch(setCurrentTrack(track));
+        console.log(currentTrack);
+        if (!currentTrack) {
+            const track = { uri: artist.firstTrack };
+            dispatch(setCurrentTrack(track));
+        }
+        dispatch(setCurrentPlayerStatus(!isPlaying));
     }
     return (
         <ArtistsCardWrapper>
@@ -21,8 +25,8 @@ const ArtistCard = ({ artist }) => {
                 <p className="subtitle">{artist?.type}</p>
             </ArtistInfoWrapper>
             <IconWrapper>
-                {!play ? <PlayArrowIcon className="play-icon" onClick={onPlay}></PlayArrowIcon> :
-                    <StopIcon className="play-icon" onClick={onPlay}></StopIcon>}
+                {!isPlaying ? <PlayArrowIcon className="play-icon" onClick={onPlay}></PlayArrowIcon> :
+                    <PauseIcon className="play-icon" onClick={onPlay}></PauseIcon>}
             </IconWrapper>
         </ArtistsCardWrapper>
     )

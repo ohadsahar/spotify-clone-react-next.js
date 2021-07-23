@@ -1,5 +1,6 @@
 import PlaylistPage from "@/components/PlaylistPage/PlaylistPage";
-import { getPlaylistTracks } from "@/store/actions/track.actions";
+import { getPlaylistTracks } from "@/store/actions/playlist.actions";
+
 import { useRouter } from "next/router";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

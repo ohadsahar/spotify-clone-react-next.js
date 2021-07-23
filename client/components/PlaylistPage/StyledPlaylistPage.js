@@ -3,14 +3,16 @@ import styled from 'styled-components';
 export const PlaylistPageWrapper = styled.div`
     height: 82vh;
     overflow-y: scroll;
-    padding: 1.5rem;
+ 
 
 `;
 
 export const ArtistPlayListWrapper = styled.div`
-display: flex;
+    display: flex;
     align-items: center;
     justify-content: flex-end;
+    background-color: ${props => props.backgroundColor};
+    padding: 1.5rem;
 
 .title {
     font-size: 4rem;

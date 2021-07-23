@@ -1,4 +1,4 @@
-import { getCurrentAlbum } from '@/store/actions/track.actions';
+import { getCurrentAlbum } from '@/store/actions/album.actions';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,8 +9,8 @@ import {
 
 
 const Dashboard = () => {
-    const data = useSelector(state => state.track.albums);
-    const playlistsToHandle = useSelector(state => state.track.playlists);
+    const data = useSelector(state => state.album.albums);
+    const playlistsToHandle = useSelector(state => state.playlist.playlists);
     const accessToken = useSelector(state => state.auth.accessToken);
     const [albumsToShow, setAlbumsToShow] = useState([]);
     const [playlistsToShow, setPlaylists] = useState([]);
@@ -45,14 +45,18 @@ const Dashboard = () => {
                 if (image.height > smallest.height) return image
                 return smallest;
             }, playlist.images[0]);
+            const r = () => Math.random() * 256 >> 0;
+            const color = `rgb(${r()}, ${r()}, ${r()})`;
             return {
                 name: playlist.name,
                 description: playlist.description,
                 playlistImage: smallestImage.url,
                 total: playlist.tracks.total,
-                uri: playlist.id
+                uri: playlist.id,
+                backgroundColor: color
             }
         });
+        console.log(playlists)
         setPlaylists(playlists);
     }, [playlistsToHandle]);
 

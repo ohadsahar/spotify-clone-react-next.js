@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import SpotifyPlayer from "react-spotify-web-playback";
 import { useDispatch } from 'react-redux';
-import { setCurrentTrack } from '@/store/actions/track.actions';
+import { setCurrentPlayerStatus, setCurrentTrack } from '@/store/actions/player.actions';
 
 const Player = () => {
 
     const accessToken = useSelector(state => state.auth.accessToken);
-    const track = useSelector(state => state.track.currentTrack);
-    const currentAlbum = useSelector(state => state.track.currentAlbum);
-    const [play, setPlay] = useState(false);
+    const track = useSelector(state => state.player.currentTrack);
+    const isPlaying = useSelector(state => state.player.play);
+    const currentAlbum = useSelector(state => state.album.currentAlbum);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setPlay(true);
+        // setPlay(true);
     }, [track])
 
     const handleNextSong = () => {
@@ -29,15 +29,20 @@ const Player = () => {
         <SpotifyPlayer
             token={accessToken}
             showSaveIcon
-            play={play}
+            play={isPlaying}
             callback={state => {
+                console.log(state);
+                if (state.isPlaying) {
+                    dispatch(setCurrentPlayerStatus(true));
+                }
+                if (!state.isPlaying) {
+                    dispatch(setCurrentPlayerStatus(false));
+                }
                 if (!currentAlbum) return;
                 if (state.progressMs === 0 && !state.isPlaying) {
                     handleNextSong();
                 }
-                if (!state.isPlaying) {
-                    setPlay(false);
-                }
+
             }}
             uris={track?.uri ? [track?.uri] : []}
         />
