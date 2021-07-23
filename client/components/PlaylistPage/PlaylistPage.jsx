@@ -39,7 +39,7 @@ const PlaylistPage = () => {
                     <img src={currentPlaylist.playlistImage} />
                 </ArtistPlayListWrapper>
                 {playlistTracksToShow && playlistTracksToShow.map((track) => (
-                    <PlayListPageItem track={track} chooseTrack={chooseTrack} />
+                    <PlayListPageItem key={track.name} track={track} chooseTrack={chooseTrack} />
                 ))}
             </div>
         </PlaylistPageWrapper>

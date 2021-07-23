@@ -31,7 +31,6 @@ const Player = () => {
             showSaveIcon
             play={isPlaying}
             callback={state => {
-                console.log(state);
                 if (state.isPlaying) {
                     dispatch(setCurrentPlayerStatus(true));
                 }

@@ -18,12 +18,12 @@ const PlayListPageItem = ({ track, chooseTrack }) => {
 
     return (
         <TrackItemWrapper onClick={() => handleClick(track)}>
-            <img src={track.image} />
-            <TrackInfo active={currentTrack.name === track.name}>
+            <img src={track?.image} />
+            <TrackInfo active={currentTrack?.name === track?.name}>
                 <div>
                     <p className="title">{track.name}</p>
                 </div>
-                <p className="time">{formatMinutes(track.duration)}</p>
+                <p className="time">{formatMinutes(track?.duration)}</p>
             </TrackInfo>
         </TrackItemWrapper>
     )

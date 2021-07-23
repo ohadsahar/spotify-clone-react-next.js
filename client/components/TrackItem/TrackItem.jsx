@@ -18,13 +18,13 @@ const TrackItem = ({ track, chooseTrack }) => {
 
     return (
         <TrackItemWrapper onClick={handleClick}>
-            <img src={track.albumUrl} />
-            <TrackInfo active={currentTrack.title === track.title}>
+            <img src={track?.albumUrl} />
+            <TrackInfo active={currentTrack?.title === track?.title}>
                 <div>
-                    <p className="title">{track.title}</p>
-                    <p className="muted">By {track.artist}</p>
+                    <p className="title">{track?.title}</p>
+                    <p className="muted">By {track?.artist}</p>
                 </div>
-                <p className="time">{formatMinutes(track.duration)}</p>
+                <p className="time">{formatMinutes(track?.duration)}</p>
             </TrackInfo>
         </TrackItemWrapper>
     )

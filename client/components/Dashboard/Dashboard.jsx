@@ -56,7 +56,6 @@ const Dashboard = () => {
                 backgroundColor: color
             }
         });
-        console.log(playlists)
         setPlaylists(playlists);
     }, [playlistsToHandle]);
 
