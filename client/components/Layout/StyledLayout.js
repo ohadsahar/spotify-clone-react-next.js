@@ -21,7 +21,7 @@ export const SideContentWrapper = styled.div`
 export const CurrentLayout = styled.div`
   width: 85%; 
   overflow-y: scroll;
-  height: 88%;
+  height: 93%;
   background-color: ${props => props.theme.colors.main};
 `;
 

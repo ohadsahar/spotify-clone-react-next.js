@@ -11,7 +11,11 @@ const PlaylistPage = () => {
     const currentPlaylist = useSelector(state => state.playlist.currentPlaylist);
 
     useEffect(() => {
-        if (!playlistTracks) return;
+
+        if (!playlistTracks || currentPlaylist.name === undefined) {
+            window.location = '/dashboard';
+        };
+
         const tracks = playlistTracks.map(({ track }) => {
             const smallestImage = track.album.images.reduce((smallest, image) => {
                 if (image.height < smallest.height) return image
@@ -33,15 +37,13 @@ const PlaylistPage = () => {
 
     return (
         <PlaylistPageWrapper>
-            <div>
-                <ArtistPlayListWrapper backgroundColor={currentPlaylist.backgroundColor}>
-                    <p className="title">{currentPlaylist.name}</p>
-                    <img src={currentPlaylist.playlistImage} />
-                </ArtistPlayListWrapper>
-                {playlistTracksToShow && playlistTracksToShow.map((track) => (
-                    <PlayListPageItem key={track.name} track={track} chooseTrack={chooseTrack} />
-                ))}
-            </div>
+            <ArtistPlayListWrapper backgroundColor={currentPlaylist.backgroundColor}>
+                <p className="title">{currentPlaylist.name}</p>
+                <img src={currentPlaylist.playlistImage} />
+            </ArtistPlayListWrapper>
+            {playlistTracksToShow && playlistTracksToShow.map((track) => (
+                <PlayListPageItem key={track.name} track={track} chooseTrack={chooseTrack} />
+            ))}
         </PlaylistPageWrapper>
     )
 }

@@ -2,14 +2,18 @@ import Album from '@/components/Album/Album';
 import { setCurrentTrack } from '@/store/actions/player.actions';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import useAuth from 'utils/useAuth';
 
 const AlbumPage = () => {
     const dispatch = useDispatch();
     const album = useSelector(state => state.album.currentAlbum);
     const [currentAlbum, setCurrentAlbum] = useState();
+    useAuth();
 
     useEffect(() => {
-        if (!album) return;
+        if (!album) {
+            window.location = '/dashboard';
+        };
         const smallestImage = album.images.reduce((smallest, image) => {
             if (image.height < smallest.height) return image
             return smallest

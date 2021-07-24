@@ -4,8 +4,8 @@ import axios from 'axios';
 
 export const loginSpotify = (token) => async dispatch => {
     const result = await axios.post(`${API_URL}auth/login`, { code: token });
-    window.history.pushState([], null, '/');
     if (result.data != null) {
+        localStorage.setItem('refreshToken', result.data.data.refreshToken);
         const data = {
             accessToken: result.data.data.accessToken,
             refreshToken: result.data.data.refreshToken,
