@@ -1,5 +1,5 @@
 import { API_URL } from "@/config/index";
-import { LOGIN_SUCCESS, UPDATE_LOGIN } from "@/store/types/auth.types";
+import { DISCONNECT, LOGIN_SUCCESS, UPDATE_LOGIN } from "@/store/types/auth.types";
 import axios from 'axios';
 
 export const loginSpotify = (token) => async dispatch => {
@@ -22,4 +22,9 @@ export const refreshLogin = (refreshToken) => async dispatch => {
         expiresIn: result.data.data.expiresIn
     }
     dispatch({ type: UPDATE_LOGIN, payload: data });
+}
+
+export const disconnect = () => dispatch => {
+    localStorage.removeItem('refreshToken');
+    dispatch({ type: DISCONNECT });
 }

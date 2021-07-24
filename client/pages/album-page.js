@@ -1,4 +1,5 @@
 import Album from '@/components/Album/Album';
+import Loading from '@/components/Loading/loading';
 import { setCurrentTrack } from '@/store/actions/player.actions';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,6 +8,7 @@ import useAuth from 'utils/useAuth';
 const AlbumPage = () => {
     const dispatch = useDispatch();
     const album = useSelector(state => state.album.currentAlbum);
+    const isLoading = useSelector(state => state.loading.loading);
     const [currentAlbum, setCurrentAlbum] = useState();
     useAuth();
 
@@ -34,7 +36,10 @@ const AlbumPage = () => {
 
     return (
         <div>
-            {currentAlbum !== null ? <Album changeTrack={changeTrack} currentAlbum={currentAlbum} /> : null}
+            {!isLoading ? <div>
+                {currentAlbum !== null ? <Album changeTrack={changeTrack} currentAlbum={currentAlbum} /> : null}
+            </div> : <Loading />}
+
         </div>
     )
 }

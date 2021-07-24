@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
           font-family: 'Rubik', sans-serif;
         font-size: 10px;
+
     }
 
     p {

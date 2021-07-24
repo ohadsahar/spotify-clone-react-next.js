@@ -1,14 +1,35 @@
 import { SPOTIFY_CLIENT_ID, SPOTIFY_URL, URI, SPOTIFY_PERMISSION } from "@/config/index";
-import { LoginWrapper } from "./StyledLogin";
+import AnimatedImage from "utils/animatedImage";
+import useAuth from "utils/useAuth";
+import { LoginWrapper, ImageWrapper, ButtonWrapper } from "./StyledLogin";
+import { useSelector } from 'react-redux';
+import { useRouter } from "next/router";
+import { useEffect } from 'react';
 
 const url = `${SPOTIFY_URL}?client_id=${SPOTIFY_CLIENT_ID}&response_type=code
 &redirect_uri=${URI}&scope=${SPOTIFY_PERMISSION}`
 
 const Login = () => {
 
+    useAuth();
+    const accessToken = useSelector(state => state.auth.accessToken);
+    const router = useRouter();
+    useEffect(() => {
+        if (accessToken) {
+            router.push('/dashboard');
+        }
+    }, [accessToken])
+
     return (
         <LoginWrapper>
-            <a className="btn btn-success btn-lg" href={url}>Login with spotify</a>
+            <p >Welcome To
+                Spotify Clone</p>
+            <ImageWrapper>
+                <AnimatedImage imageUrl={"static/music.png"} name={"logo"} />
+            </ImageWrapper>
+            <ButtonWrapper>
+                <a href={url}>Login</a>
+            </ButtonWrapper>
         </LoginWrapper>
 
     )

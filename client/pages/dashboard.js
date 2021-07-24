@@ -1,9 +1,9 @@
 import Dashboard from "@/components/Dashboard/Dashboard";
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { DashboardWrapper } from "@/components/Dashboard/StyledDashboard";
-import { getNewPlaylists } from "@/store/actions/playlist.actions";
 import { getNewReleases } from "@/store/actions/album.actions";
+import { getNewPlaylists } from "@/store/actions/playlist.actions";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useAuth from "utils/useAuth";
 
 const dashboard = () => {
@@ -19,7 +19,7 @@ const dashboard = () => {
 
     return (
         <DashboardWrapper>
-            {accessToken ? <Dashboard /> : <p>Loading</p>}
+            {accessToken ? <Dashboard /> : <p></p>}
         </DashboardWrapper>
     )
 }

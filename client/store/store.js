@@ -6,6 +6,7 @@ import { playlistReducer } from '@/store/reducers/playlist.reducer';
 import { trackReducer } from '@/store/reducers/track.reducer';
 import { albumReducer } from '@/store/reducers/album.reducer';
 import { playerReducer } from '@/store/reducers/player.reducer';
+import { loadingReducer } from '@/store/reducers/loading.reducer';
 
 
 const initialState = {};
@@ -17,8 +18,10 @@ const reducer = combineReducers({
     track: trackReducer,
     playlist: playlistReducer,
     album: albumReducer,
-    player: playerReducer
+    player: playerReducer,
+    loading: loadingReducer
 });
+
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
 
 export default store;

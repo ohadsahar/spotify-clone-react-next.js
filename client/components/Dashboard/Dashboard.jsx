@@ -2,6 +2,7 @@ import { getCurrentAlbum } from '@/store/actions/album.actions';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../Loading/loading';
 import Playlist from '../Playlist/Playlist';
 import {
     AlbumsWrapper, AlbumWrapper, ArtistInfoWrapper, DashboardWrapper
@@ -14,6 +15,7 @@ const Dashboard = () => {
     const accessToken = useSelector(state => state.auth.accessToken);
     const [albumsToShow, setAlbumsToShow] = useState([]);
     const [playlistsToShow, setPlaylists] = useState([]);
+    const isLoading = useSelector(state => state.loading.loading);
     const dispatch = useDispatch();
     const router = useRouter();
 
@@ -64,28 +66,29 @@ const Dashboard = () => {
         router.push('/album-page');
     }
 
-
-
     return (
-        <DashboardWrapper>
-            <h1>New Albums Releases</h1>
-            <AlbumsWrapper>
-                {albumsToShow.length > 0 && albumsToShow.map(currentAlbum => (
-                    <AlbumWrapper key={currentAlbum.id}
-                        onClick={() => getCurrentAlbumSongs(currentAlbum.id)}>
-                        <img src={currentAlbum.albumImage} />
-                        <ArtistInfoWrapper>
-                            <p className="title">{currentAlbum.albumName}</p>
-                        </ArtistInfoWrapper>
-                    </AlbumWrapper>
-                ))}
-            </AlbumsWrapper>
-            <h1>New Playlists</h1>
-            <div>
-                {playlistsToShow.length}
-                {playlistsToShow.length > 0 ? <Playlist playlists={playlistsToShow} /> : null}
-            </div>
-        </DashboardWrapper >
+        <div>
+            {!isLoading ? <DashboardWrapper>
+                <h1>New Albums Releases</h1>
+                <AlbumsWrapper>
+                    {albumsToShow.length > 0 && albumsToShow.map(currentAlbum => (
+                        <AlbumWrapper key={currentAlbum.id}
+                            onClick={() => getCurrentAlbumSongs(currentAlbum.id)}>
+                            <img src={currentAlbum.albumImage} />
+                            <ArtistInfoWrapper>
+                                <p className="title">{currentAlbum.albumName}</p>
+                            </ArtistInfoWrapper>
+                        </AlbumWrapper>
+                    ))}
+                </AlbumsWrapper>
+                <h1>New Playlists</h1>
+                <div>
+                    {playlistsToShow.length}
+                    {playlistsToShow.length > 0 ? <Playlist playlists={playlistsToShow} /> : null}
+                </div>
+            </DashboardWrapper > : <Loading />}
+        </div>
+
     )
 }
 

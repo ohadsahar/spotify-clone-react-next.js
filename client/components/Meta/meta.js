@@ -17,9 +17,9 @@ const Meta = ({ title, keywords, description }) => {
 }
 
 Meta.defaultProps = {
-    title: 'Clone Spotify',
+    title: 'Spotify Clone',
     keywords: 'Spotify,Music',
-    description: 'Clone of spotify',
+    description: 'Spotify Clone, Used for tutorial for beginners',
 }
 
 export default Meta;
