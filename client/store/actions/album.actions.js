@@ -8,7 +8,7 @@ const spotifyApi = new SpotifyWebApi({
 
 export const getNewReleases = (accessToken) => async dispatch => {
     spotifyApi.setAccessToken(accessToken);
-    const result = await spotifyApi.getNewReleases({ limit: 5, offset: 0, country: 'IL' });
+    const result = await spotifyApi.getNewReleases({ limit: 6, offset: 0, country: 'IL' });
     dispatch({ type: GET_NEW_RELEASES, payload: result.body.albums.items });
 }
 

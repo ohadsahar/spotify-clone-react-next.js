@@ -6,11 +6,13 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: 0;
         margin: 0;
         padding: 0;
+        font-family: 'Rubik', sans-serif;
         height: 100vh;
         overflow-y: hidden;
     }
 
     body {
+          font-family: 'Rubik', sans-serif;
         font-size: 10px;
     }
 

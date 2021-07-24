@@ -18,7 +18,9 @@ const SearchResults = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!result || !accessToken || !artistInfo) return;
+        if (!result || !accessToken || !artistInfo) {
+            window.location = '/dashboard';
+        };
         handleArtistInfo(artistInfo);
         if (!result.body?.tracks) return;
         handleSearchResults(result);

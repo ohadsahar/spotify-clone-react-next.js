@@ -4,7 +4,6 @@ export const LayoutWrapper = styled.div`
     display: flex;
     position: relative;
     width: 100%;
-    /* height: 100vh; */
 `;
 
 export const MainContentWrapper = styled.div`
@@ -21,7 +20,7 @@ export const SideContentWrapper = styled.div`
 export const CurrentLayout = styled.div`
   width: 85%; 
   overflow-y: scroll;
-  height: 93%;
+  height: 89vh;
   background-color: ${props => props.theme.colors.main};
 `;
 

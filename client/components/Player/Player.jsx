@@ -13,7 +13,6 @@ const Player = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // setPlay(true);
     }, [track])
 
     const handleNextSong = () => {

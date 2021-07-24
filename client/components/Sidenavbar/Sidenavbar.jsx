@@ -10,7 +10,6 @@ const Sidenavbar = () => {
     const accessToken = useSelector(state => state.auth.accessToken);
 
     useEffect(() => {
-        console.log(accessToken);
         if (!accessToken) {
             window.location = '/';
         }

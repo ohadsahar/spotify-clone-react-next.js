@@ -39,7 +39,7 @@ const Album = ({ currentAlbum, changeTrack }) => {
                             <div className="track-details">
                                 <p className="title">{track?.name}</p>
                                 {track.artists.map((artist) => (
-                                    <p className="muted">{artist}</p>
+                                    <p key={artist} className="muted">{artist}</p>
                                 ))}
                             </div>
                             <div className="time">
