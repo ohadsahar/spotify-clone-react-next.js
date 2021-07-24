@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: 'Roboto', sans-serif;
-        height: 100%;
+        height: 100vh;
         overflow-y: hidden;
     }
 
@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
 
     .PlayerRSWP {
         background-color: #191414 !important;
-        min-height: 6.5rem !important;
+        /* min-height: 6.5rem !important; */
     }
 
     .rswp__toggle {
@@ -38,6 +38,18 @@ export const GlobalStyle = createGlobalStyle`
         span {
             background-color:#1cd05f !important;
         }
+    }
+
+    .__1d63smy > button {
+        color: white !important;
+    }
+
+    .__1k6b4a3 > button {
+        color: white !important;
+    }
+
+    .__j3ulwq >button {
+        color: white !important;
     }
    
 

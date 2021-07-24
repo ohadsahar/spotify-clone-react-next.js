@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
+
+export const SearchResultsWrapper = styled.div`
+    
+`;
+
+
 export const SearchWrapper = styled.div`
   display: flex;
-  padding:.5rem;
   flex-direction: column;
   width: 100%;
-  height: 98vh;
-  max-height: 96vh;
+  padding-top: 1rem;
+    padding-left: .3rem;
    
    h1 {
      color: white;
@@ -33,9 +38,4 @@ export const SearchInputWrapper = styled.div`
 `;
 
 
-export const SearchResultsWrapper = styled.div`
-    overflow-y: scroll;
-    max-height: calc(93vh - 4.5rem);
-    padding:.5rem;
-`;
 

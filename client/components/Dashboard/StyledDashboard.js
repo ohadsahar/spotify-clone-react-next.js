@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 
 export const DashboardWrapper = styled.div`
-height: 85vh;
-padding: 2rem;
-overflow-y: scroll;
+padding: 1rem;
 h1,h2 {
        color: white;
    }
 `
 
 export const AlbumsWrapper = styled.div`
-
-display: grid;
+    display: grid;
    grid-template-columns: repeat(3,1fr);
 
 

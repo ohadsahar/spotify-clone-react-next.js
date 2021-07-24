@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 export const PlaylistPageWrapper = styled.div`
-    height: 82vh;
+    height: 100%;
     overflow-y: scroll;
- 
-
 `;
 
 export const ArtistPlayListWrapper = styled.div`

@@ -3,13 +3,9 @@ import styled from 'styled-components';
 export const CurrentAlbumWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-
 `;
 
 export const TracksWrapper = styled.div`
-    max-height: 63vh;
-    overflow-y: scroll;
     cursor: pointer;
 `;
 

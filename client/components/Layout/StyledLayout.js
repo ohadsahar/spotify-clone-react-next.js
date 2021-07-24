@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 export const LayoutWrapper = styled.div`
     display: flex;
-    width: 100%;
     position: relative;
+    width: 100%;
+    /* height: 100vh; */
 `;
 
 export const MainContentWrapper = styled.div`
  display: flex;
   width: 100%;
+  height: 100vh;
+  background-color: ${props => props.theme.colors.main};
 `;
 export const SideContentWrapper = styled.div`
   width: 15%;
@@ -17,6 +20,8 @@ export const SideContentWrapper = styled.div`
 
 export const CurrentLayout = styled.div`
   width: 85%; 
+  overflow-y: scroll;
+  height: 88%;
   background-color: ${props => props.theme.colors.main};
 `;
 
