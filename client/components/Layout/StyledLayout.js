@@ -15,6 +15,11 @@ export const MainContentWrapper = styled.div`
 export const SideContentWrapper = styled.div`
   width: 15%;
   height: 100vh;
+
+  @media(max-width:768px) {
+        width: 0%;
+        visibility: hidden;
+    }
 `;
 
 export const CurrentLayout = styled.div`
@@ -22,10 +27,19 @@ export const CurrentLayout = styled.div`
   overflow-y: scroll;
   height: 89vh;
   background-color: ${props => props.theme.colors.main};
+  @media(max-width:768px) {
+        width: 100%;
+    }
 `;
 
 export const PlayerWrapper = styled.div`
 position: absolute;
 bottom: 0;
 width: 100%;
+padding-bottom: 64px;
+padding-top: 64px;
+
+@media(min-width:768px) {
+  padding:0;
+}
 `;

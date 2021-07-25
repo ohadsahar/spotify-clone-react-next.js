@@ -1,6 +1,7 @@
 import Player from '@/components/Player/Player';
 import Sidenavbar from '@/components/Sidenavbar/Sidenavbar';
 import { useSelector } from 'react-redux';
+import MobileAppBar from '@/components/MobileAppBar/MobileAppBar';
 import { CurrentLayout, LayoutWrapper, MainContentWrapper, PlayerWrapper, SideContentWrapper } from './StyledLayout';
 const Layout = ({ children }) => {
 
@@ -20,6 +21,7 @@ const Layout = ({ children }) => {
             <PlayerWrapper>
                 <Player />
             </PlayerWrapper>
+            {authData.accessToken ? <MobileAppBar /> : null}
         </LayoutWrapper >
     )
 }

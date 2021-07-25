@@ -28,13 +28,24 @@ overflow-y: hidden;
 }
 `;
 export const SearchInputWrapper = styled.div`
+  
  input {
   border-radius: 16px;
     border: none;
     width: 40%;
     outline: none;
     padding: .5rem;
+
+    @media(max-width:768px) {
+  width: 75%;
+
+}
  }
+
+ @media(max-width:768px) {
+  margin-left:3.5rem;
+
+}
 `;
 
 

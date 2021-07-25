@@ -6,6 +6,10 @@ background-color: rgb(153 153 153 / 7%);
 padding: 1rem;
 transition: .5s ease-out;
 width: 200px;
+
+@media(max-width:768px) {
+    width:180px;
+}
     
 .title {
     font-size: 14px;

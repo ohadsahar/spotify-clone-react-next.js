@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 export const DashboardWrapper = styled.div`
-padding: 1rem;
+padding: 1rem 1rem 2rem 1rem;
+overflow-x: hidden;
 h1,h2 {
        color: white;
    }
+
+   @media(min-width:768px) {
+      padding: 1rem;
+    }
 `
 
 export const AlbumsWrapper = styled.div`
@@ -12,6 +17,10 @@ export const AlbumsWrapper = styled.div`
    grid-template-columns: repeat(3,1fr);
 
    @media(max-width:768px) {
+    grid-template-columns: repeat(2,1fr);
+   }
+
+   @media(max-width:450px) {
     grid-template-columns: repeat(1,1fr);
    }
 

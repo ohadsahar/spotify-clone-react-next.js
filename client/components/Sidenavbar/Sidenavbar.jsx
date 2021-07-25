@@ -41,7 +41,6 @@ const Sidenavbar = () => {
                 <ExitToAppIcon className="search-icon" />
                 <a >Disconnect</a>
             </SidebarItem>
-            <p>{router.pathname === '/dashboard'}</p>
         </SideBarWrapper>
     )
 }

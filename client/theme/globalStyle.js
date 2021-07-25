@@ -9,12 +9,12 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Rubik', sans-serif;
         height: 100vh;
         overflow-y: hidden;
+        overflow-x:hidden;
     }
 
     body {
           font-family: 'Rubik', sans-serif;
-        font-size: 10px;
-
+            font-size: 10px;
     }
 
     p {
