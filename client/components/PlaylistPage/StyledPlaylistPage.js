@@ -12,6 +12,7 @@ export const ArtistPlayListWrapper = styled.div`
     background-color: ${props => props.backgroundColor};
     padding: 1.5rem;
 
+
 .title {
     font-size: 4rem;
     font-weight: bold;
@@ -21,9 +22,15 @@ img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-
-    @media(max-width:768px) {
-        
-    }
 }
+
+@media(max-width:768px) {
+        img {
+            width: 100px;
+        height: 100px;
+        }
+        .title {
+            font-size: 1.5rem;
+        }
+    }
 `;

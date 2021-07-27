@@ -4,6 +4,7 @@ import { setCurrentTrack } from '@/store/actions/player.actions';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from 'utils/useAuth';
+import { getSmallestImage } from 'utils/util.service';
 
 const AlbumPage = () => {
     const dispatch = useDispatch();
@@ -12,18 +13,19 @@ const AlbumPage = () => {
     const [currentAlbum, setCurrentAlbum] = useState();
     useAuth();
 
+    const buildArrayWithArtistsNamesOnly = (track) => {
+        return track.artists.map((artist) => {
+            return artist.name;
+        });
+    }
+
     useEffect(() => {
         if (!album) {
             window.location = '/dashboard';
         };
-        const smallestImage = album.images.reduce((smallest, image) => {
-            if (image.height < smallest.height) return image
-            return smallest
-        }, album.images[0]);
+        const smallestImage = getSmallestImage(album);
         const albumTracks = album.tracks.items.map((track) => {
-            const currentTrackArtists = track.artists.map((artist) => {
-                return artist.name;
-            });
+            const currentTrackArtists = buildArrayWithArtistsNamesOnly(track);
             return { name: track.name, uri: track.uri, artists: currentTrackArtists, duration: track.duration_ms };
         })
         const albumToShow = { name: album.name, tracks: albumTracks, albumImage: smallestImage.url };

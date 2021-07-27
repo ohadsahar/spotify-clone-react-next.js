@@ -1,6 +1,7 @@
 import CategoryPlaylist from '@/components/CategoryPlaylist/CategoryPlaylist';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { getRandomColor, getSmallestImage } from 'utils/util.service';
 
 const CategoryPage = () => {
 
@@ -9,20 +10,14 @@ const CategoryPage = () => {
     useEffect(() => {
         if (!categoryPlaylists) return;
         setPlaylists(categoryPlaylists.map((playlist) => {
-            const smallestImage = playlist.images.reduce((smallest, image) => {
-                if (smallest.height < image.height) return smallest
-                return image;
-            }, playlist.images[0]);
-            const r = () => Math.random() * 256 >> 0;
-            const color = `rgb(${r()}, ${r()}, ${r()})`;
-
+            const smallestImage = getSmallestImage(playlist);
             return {
                 id: playlist.id,
                 name: playlist.name,
                 totalTracks: playlist.tracks.total,
                 playlistImage: smallestImage.url,
                 uri: playlist.uri,
-                backgroundColor: color
+                backgroundColor: getRandomColor()
             }
         }));
     }, [categoryPlaylists])

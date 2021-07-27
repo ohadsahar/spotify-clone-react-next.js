@@ -7,6 +7,7 @@ import {
 import { getSearchedResults } from '@/store/actions/track.actions';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getSmallestImage } from 'utils/util.service';
 
 const SearchResults = () => {
     const [search, setSearch] = useState();
@@ -38,22 +39,22 @@ const SearchResults = () => {
 
     const handleArtistInfo = (artistInfo) => {
         if (artistInfo.body?.images) {
-            const smallestImage = artistInfo.body.images.reduce((smallest, image) => {
-                if (image.height < smallest.height) return image;
-                return smallest;
-            }, artistInfo.body.images[0]);
+            const smallestImage = getSmallestImage(artistInfo.body);
             setCurrentArtist(
-                { artistName: artistInfo.body.name, href: artistInfo.body.href, image: smallestImage.url ?? '', type: artistInfo.body.type, firstTrack: result.body.tracks.items[0].uri }
+                {
+                    artistName: artistInfo.body.name,
+                    href: artistInfo.body.href,
+                    image: smallestImage.url ?? '',
+                    type: artistInfo.body.type,
+                    firstTrack: result.body.tracks.items[0].uri
+                }
             );
         }
     }
 
     const handleSearchResults = (result) => {
         const searchResults = result.body.tracks.items.map((track) => {
-            const smallestImage = track.album.images.reduce((smallest, image) => {
-                if (image.height < smallest.height) return image
-                return smallest;
-            }, track.album.images[0]);
+            const smallestImage = getSmallestImage(track.album);
             return {
                 artist: track.artists[0].name,
                 title: track.name,

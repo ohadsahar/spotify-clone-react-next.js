@@ -1,16 +1,13 @@
-import {
-    CurrentAlbumWrapper, TrackInfo, TracksWrapper, TrackWrapper,
-    AlbumCardInfo
-} from './StyledAlbum';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import BackButton from '../BackButton/BackButton';
+import {
+    AlbumCardInfo, CurrentAlbumWrapper, TrackInfo, TracksWrapper, TrackWrapper
+} from './StyledAlbum';
 
 const Album = ({ currentAlbum, changeTrack }) => {
     const currentTrack = useSelector(state => state.player.currentTrack);
     const [currentTrackName, setCurrentTrackName] = useState();
-    const router = useRouter();
 
     useEffect(() => {
         if (!currentTrack) return;

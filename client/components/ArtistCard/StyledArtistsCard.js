@@ -22,7 +22,7 @@ export const ArtistInfoWrapper = styled.section`
     align-items: start;
 
     .title {
-        font-size: 24px;
+        font-size: 2.4rem;
         font-weight: bold;
         margin-top: 1rem;
     }
@@ -46,17 +46,14 @@ export const IconWrapper = styled.div`
 position: absolute;
 background-color: ${props => props.theme.colors.secondary};
 border-radius: 50%;
-width: 48px;
-height: 48px;
+width: 4.8rem;
+height: 4.8rem;
 display: flex;
 right:1rem;
 bottom: 1rem;
 align-items: center;
     justify-content: center;
 .play-icon {
-
     color: white;
 }
-
-
 `;

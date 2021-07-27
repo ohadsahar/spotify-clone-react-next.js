@@ -2,6 +2,7 @@ import { getCurrentAlbum } from '@/store/actions/album.actions';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getRandomColor } from 'utils/util.service';
 import Categories from '../Categories/Categories';
 import Loading from '../Loading/loading';
 import Playlist from '../Playlist/Playlist';
@@ -64,15 +65,13 @@ const Dashboard = () => {
                 if (image.height > smallest.height) return image
                 return smallest;
             }, playlist.images[0]);
-            const r = () => Math.random() * 256 >> 0;
-            const color = `rgb(${r()}, ${r()}, ${r()})`;
             return {
                 name: playlist.name,
                 description: playlist.description,
                 playlistImage: smallestImage.url,
                 total: playlist.tracks.total,
                 uri: playlist.id,
-                backgroundColor: color
+                backgroundColor: getRandomColor()
             }
         }));
     }, [playlistsToHandle]);
@@ -98,17 +97,13 @@ const Dashboard = () => {
                     ))}
                 </AlbumsWrapper>
                 <h1>New Playlists</h1>
-
                 {playlistsToShow.length}
                 {playlistsToShow.length > 0 ? <Playlist playlists={playlistsToShow} /> : null}
-
                 <h1>Top Categories</h1>
                 {categoriesToShow.length}
                 {categoriesToShow.length > 0 ? <Categories categories={categoriesToShow} /> : null}
-
             </DashboardWrapper > : <Loading />}
         </div>
-
     )
 }
 

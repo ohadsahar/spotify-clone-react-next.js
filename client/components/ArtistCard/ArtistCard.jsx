@@ -9,6 +9,7 @@ const ArtistCard = ({ artist }) => {
     const isPlaying = useSelector(state => state.player.play);
     const currentTrack = useSelector(state => state.player.currentTrack);
     const dispatch = useDispatch();
+
     const onPlay = () => {
         if (!currentTrack) {
             const track = { uri: artist.firstTrack };
