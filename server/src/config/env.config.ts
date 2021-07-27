@@ -4,12 +4,6 @@ import * as path from 'path';
 const argv: ParsedArgs = minimist(process.argv.slice(2));
 
 const constants = {
-	jwt: {
-		forgot_password_token_expires: '1h',
-		token_expires: '365 days',
-		key: 'l23@#shfa1340**@dfg009Alk3#Vk_anlj',
-		ignoreExpiration: false
-	},
 	spotifyAPI: {
 		uri: 'http://localhost:3005',
 		clientID: '88bcc79b09b040c6b8f86b914ddd739f',
@@ -45,13 +39,6 @@ export interface IConfig {
 	synchronize: boolean;
 	logging: boolean;
 	dropSchema: boolean;
-	jwt: {
-		token_expires: string,
-		key: string,
-		ignoreExpiration: boolean,
-		forgot_password_token_expires?: string;
-	},
-
 }
 
 let config: any;

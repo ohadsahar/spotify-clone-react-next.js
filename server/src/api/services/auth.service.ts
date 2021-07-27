@@ -1,5 +1,4 @@
 import { Service } from 'typedi';
-import { JwtService } from './jwt.service';
 
 import getConfig from '../../config/env.config';
 import { LoginDTO } from '../dto/auth/loginDTO';
@@ -8,8 +7,7 @@ import SpotifyWebApi from 'spotify-web-api-node';
 @Service()
 export class AuthService {
 
-	constructor(
-		private jwtService: JwtService) {
+	constructor() {
 	}
 
 	async login(loginDTO: LoginDTO): Promise<any> {
