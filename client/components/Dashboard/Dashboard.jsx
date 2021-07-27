@@ -2,19 +2,22 @@ import { getCurrentAlbum } from '@/store/actions/album.actions';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Categories from '../Categories/Categories';
 import Loading from '../Loading/loading';
 import Playlist from '../Playlist/Playlist';
 import {
-    AlbumsWrapper, AlbumWrapper, ArtistInfoWrapper, DashboardWrapper
+    AlbumsWrapper, AlbumWrapper, ArtistInfoWrapper, DashboardWrapper, PlaylistWrapper, CategoriesWrapper
 } from './StyledDashboard';
 
 
 const Dashboard = () => {
     const data = useSelector(state => state.album.albums);
     const playlistsToHandle = useSelector(state => state.playlist.playlists);
+    const categories = useSelector(state => state.category.categories);
     const accessToken = useSelector(state => state.auth.accessToken);
     const [albumsToShow, setAlbumsToShow] = useState([]);
     const [playlistsToShow, setPlaylists] = useState([]);
+    const [categoriesToShow, setCategories] = useState([]);
     const isLoading = useSelector(state => state.loading.loading);
     const dispatch = useDispatch();
     const router = useRouter();
@@ -39,10 +42,24 @@ const Dashboard = () => {
         setAlbumsToShow(albums);
     }, [data]);
 
+    useEffect(() => {
+
+        setCategories(categories.map((category) => {
+            const smallestImage = category.icons.reduce((smallest, image) => {
+                if (image.height < smallest.height) return image
+                return smallest;
+            }, category.icons[0]);
+            return {
+                id: category.id,
+                name: category.name,
+                image: smallestImage,
+            }
+        }));
+    }, [categories])
 
     useEffect(() => {
         if (!playlistsToHandle) return;
-        const playlists = playlistsToHandle.map((playlist) => {
+        setPlaylists(playlistsToHandle.map((playlist) => {
             const smallestImage = playlist.images.reduce((smallest, image) => {
                 if (image.height > smallest.height) return image
                 return smallest;
@@ -57,8 +74,7 @@ const Dashboard = () => {
                 uri: playlist.id,
                 backgroundColor: color
             }
-        });
-        setPlaylists(playlists);
+        }));
     }, [playlistsToHandle]);
 
     const getCurrentAlbumSongs = (albumID) => {
@@ -82,10 +98,14 @@ const Dashboard = () => {
                     ))}
                 </AlbumsWrapper>
                 <h1>New Playlists</h1>
-                <div>
-                    {playlistsToShow.length}
-                    {playlistsToShow.length > 0 ? <Playlist playlists={playlistsToShow} /> : null}
-                </div>
+
+                {playlistsToShow.length}
+                {playlistsToShow.length > 0 ? <Playlist playlists={playlistsToShow} /> : null}
+
+                <h1>Top Categories</h1>
+                {categoriesToShow.length}
+                {categoriesToShow.length > 0 ? <Categories categories={categoriesToShow} /> : null}
+
             </DashboardWrapper > : <Loading />}
         </div>
 

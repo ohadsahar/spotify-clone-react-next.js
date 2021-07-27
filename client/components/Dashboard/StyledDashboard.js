@@ -4,7 +4,9 @@ export const DashboardWrapper = styled.div`
 padding: 1rem 1rem 2rem 1rem;
 overflow-x: hidden;
 h1,h2 {
-       color: white;
+    color: #1cd05f;
+    font-size: 0.9rem;
+    letter-spacing: 0.3ch;
    }
 
    @media(min-width:768px) {
@@ -66,5 +68,9 @@ export const ArtistInfoWrapper = styled.div`
         margin-left: .5rem;
     }
 `;
+
+
+
+
 
 

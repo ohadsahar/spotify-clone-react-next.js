@@ -10,7 +10,7 @@ const spotifyApi = new SpotifyWebApi({
 export const getNewPlaylists = (accessToken) => async dispatch => {
     dispatch(setLoading(true));
     spotifyApi.setAccessToken(accessToken);
-    const result = await spotifyApi.getFeaturedPlaylists({ limit: 4, offset: 1, country: 'IL', locale: 'he_IL' });
+    const result = await spotifyApi.getFeaturedPlaylists({ limit: 10, offset: 0, country: 'IL', locale: 'he_IL' });
     dispatch({ type: GET_NEW_PLAYLISTS, payload: result.body.playlists.items });
     setTimeout(() => {
         dispatch(setLoading(false));

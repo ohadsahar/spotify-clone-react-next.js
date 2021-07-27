@@ -4,10 +4,13 @@ import {
 } from './StyledAlbum';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import BackButton from '../BackButton/BackButton';
 
 const Album = ({ currentAlbum, changeTrack }) => {
     const currentTrack = useSelector(state => state.player.currentTrack);
     const [currentTrackName, setCurrentTrackName] = useState();
+    const router = useRouter();
 
     useEffect(() => {
         if (!currentTrack) return;
@@ -24,6 +27,7 @@ const Album = ({ currentAlbum, changeTrack }) => {
     return (
 
         <CurrentAlbumWrapper>
+            <BackButton />
             <AlbumCardInfo>
                 <img src={currentAlbum?.albumImage} />
                 <h2>Current Album - {currentAlbum?.name}</h2>
