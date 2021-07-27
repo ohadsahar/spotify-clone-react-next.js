@@ -25,11 +25,11 @@ export const SideContentWrapper = styled.div`
 export const CurrentLayout = styled.div`
   width: 85%; 
   overflow-y: scroll;
-  height: 89vh;
-  padding: .5rem;
+  height: calc(100vh - 90px);
   background-color: ${props => props.theme.colors.main};
   @media(max-width:768px) {
         width: 100%;
+        height: calc(100vh - 150px);
     }
 `;
 

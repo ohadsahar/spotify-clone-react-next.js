@@ -2,6 +2,7 @@ import PlayListPageItem from '@/components/PlayListPageItem/PlayListPageItem';
 import { setCurrentTrack } from '@/store/actions/player.actions';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import BackButton from '../BackButton/BackButton';
 import Loading from '../Loading/loading';
 import { ArtistPlayListWrapper, PlaylistPageWrapper } from './StyledPlaylistPage';
 
@@ -44,6 +45,7 @@ const PlaylistPage = () => {
                     <ArtistPlayListWrapper backgroundColor={currentPlaylist.backgroundColor}>
                         <p className="title">{currentPlaylist.name}</p>
                         <img src={currentPlaylist.playlistImage} />
+                        <BackButton />
                     </ArtistPlayListWrapper>
                     {playlistTracksToShow && playlistTracksToShow.map((track) => (
                         <PlayListPageItem key={track.uri} track={track} chooseTrack={chooseTrack} />

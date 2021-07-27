@@ -24,9 +24,9 @@ const Login = () => {
         <LoginWrapper>
             <p >Welcome To
                 Spotify Clone</p>
-            <ImageWrapper>
-                <AnimatedImage imageUrl={"static/music.png"} name={"logo"} />
-            </ImageWrapper>
+            <p className="muted">In order to view / use the project you must connect via Facebook / Google / Spotify.
+
+                hope you will enjoy</p>
             <ButtonWrapper>
                 <a href={url}>Login</a>
             </ButtonWrapper>

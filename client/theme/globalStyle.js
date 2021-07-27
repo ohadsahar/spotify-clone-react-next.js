@@ -23,6 +23,9 @@ export const GlobalStyle = createGlobalStyle`
      color: white;
     }
 
+    ._ContentRSWP __1xc0f9k {
+    max-height: 90px;
+    }
     .PlayerRSWP {
         background-color: #191414 !important;
         /* min-height: 6.5rem !important; */

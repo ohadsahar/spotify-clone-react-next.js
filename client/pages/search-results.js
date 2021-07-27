@@ -26,9 +26,8 @@ const SearchResults = () => {
         handleSearchResults(result);
     }, [])
 
-    useEffect(async () => {
-        if (!accessToken) return;
-        if (!search) return;
+    useEffect(() => {
+        if (!accessToken || !search) return;
         dispatch(getSearchedResults(accessToken, search));
         if (!result || !artistInfo) return;
         handleArtistInfo(artistInfo);

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 
 export const CategoryPlaylistDivWrapper = styled.div`
-padding: 1rem;
+padding: 2rem;
+position: relative;
 
 >h1 {
     color: #1cd05f;
@@ -13,7 +14,7 @@ padding: 1rem;
 `
 export const CategoryPlaylistWrapper = styled.div`
 display: grid;
-grid-template-columns: repeat(3,1fr);
+grid-template-columns: repeat(5,1fr);
 justify-items: center;
 
 @media(min-width:2200px) {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LoginWrapper = styled.div`
-height:89vh;
+height:85vh;
 width: 100vw;
 display: flex;
 justify-content: center;
@@ -10,9 +10,26 @@ flex-direction: column;
  p {
      width: 85%;
      color: ${props => props.theme.colors.secondary};
-     font-size: 1.5rem;
-     letter-spacing: 1.1ch;
-     text-align:center;
+    font-size: 1.5rem;
+    letter-spacing: 0.3ch;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center
+ }
+
+ .muted {
+     color: white;
+     opacity: 0.54;
+     margin-top: 1rem;
+     margin-bottom: 2.5rem;
+     font-size: 1.25rem;
+     letter-spacing: 0ch;
+     font-weight: 200;
+     word-break: break-word;
+     width: 50%;
+     @media(max-width:768px) {
+         width: 100%;
+     }
  }
 `;
 
@@ -25,10 +42,11 @@ margin-top: 2.5rem;
 `;
 
 export const ButtonWrapper = styled.div`
-    text-decoration: none;
-    margin-top: 3rem;
-    font-size: 1.25rem;
-    letter-spacing:0.5ch;
+
+  text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 0.1ch;
     a {
         text-decoration: none;
         color:${props => props.theme.colors.secondary};

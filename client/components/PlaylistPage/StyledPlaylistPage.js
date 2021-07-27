@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PlaylistPageWrapper = styled.div`
   margin-bottom: 1rem;
+  position: relative;
 `;
 
 export const ArtistPlayListWrapper = styled.div`

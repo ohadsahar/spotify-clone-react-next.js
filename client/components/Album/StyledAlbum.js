@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const CurrentAlbumWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    position: relative;
+    padding: 1rem;
 `;
 
 export const TracksWrapper = styled.div`

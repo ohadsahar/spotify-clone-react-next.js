@@ -10,7 +10,7 @@ export const playerReducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
         case SET_CURRENT_TRACK:
-            return { ...state, currentTrack: payload };
+            return { ...state, currentTrack: payload, play: true };
         case SET_PLAYER_CURRENT_STATUS:
             return { ...state, play: payload };
         default:

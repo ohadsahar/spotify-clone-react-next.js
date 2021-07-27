@@ -14,7 +14,7 @@ export default function Home() {
       dispatch(loginSpotify(code));
       router.push('/dashboard');
     }
-  }, [])
+  }, [dispatch, router])
 
   return (
     <Login />

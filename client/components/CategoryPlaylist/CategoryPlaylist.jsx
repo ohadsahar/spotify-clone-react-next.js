@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPlaylist } from "@/store/actions/playlist.actions";
+import BackButton from "../BackButton/BackButton";
 const CategoryPlaylist = ({ playlists }) => {
 
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const CategoryPlaylist = ({ playlists }) => {
     };
     return (
         <CategoryPlaylistDivWrapper>
+            <BackButton />
             <h1>Top playlists</h1>
             <CategoryPlaylistWrapper>
                 {playlists.map((playlist) => (
