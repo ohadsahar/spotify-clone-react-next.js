@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { formatMinutes } from 'utils/util.service';
 import { TrackInfo, TrackItemWrapper } from './StyledTrackItem';
 const TrackItem = ({ track, chooseTrack }) => {
 
@@ -6,14 +7,6 @@ const TrackItem = ({ track, chooseTrack }) => {
 
     const handleClick = () => {
         chooseTrack(track);
-    }
-
-    const formatMinutes = (duration) => {
-        const timeInSeconds = Math.ceil(duration / 1000);
-        const minutes = Math.round((timeInSeconds / 60));
-        let seconds = Math.round((timeInSeconds % 60));
-        seconds = seconds < 10 ? `0${seconds}` : seconds;
-        return `${minutes}:${seconds}`;
     }
 
     return (

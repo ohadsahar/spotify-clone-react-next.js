@@ -36,10 +36,8 @@ const MobileAppBar = () => {
                     active={router.pathname === '/dashboard' || router.pathname === '/'}
                 > <HomeIcon className="icon" /><Link href="/dashboard" >Home</Link>
                 </BottomBarItem>
-
                 <BottomBarItem active={router.pathname === '/search-results'}>
                     <SearchIcon className="icon" /><Link href="/search-results">Search</Link></BottomBarItem>
-
                 <BottomBarItem onClick={() => handleRoute('/')}> <ExitToAppIcon className="icon" /><p>Disconnect</p></BottomBarItem>
             </MenuWrapper>
         </MobileAppBarWrapper >

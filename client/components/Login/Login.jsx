@@ -25,13 +25,11 @@ const Login = () => {
             <p >Welcome To
                 Spotify Clone</p>
             <p className="muted">In order to view / use the project you must connect via Facebook / Google / Spotify.
-
                 hope you will enjoy</p>
             <ButtonWrapper>
                 <a href={url}>Login</a>
             </ButtonWrapper>
         </LoginWrapper>
-
     )
 }
 

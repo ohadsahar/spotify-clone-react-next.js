@@ -2,7 +2,7 @@ import { getCurrentAlbum } from '@/store/actions/album.actions';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRandomColor } from 'utils/util.service';
+import { geBiggestImage, getRandomColor, getSmallestImage } from 'utils/util.service';
 import Categories from '../Categories/Categories';
 import Loading from '../Loading/loading';
 import Playlist from '../Playlist/Playlist';
@@ -29,10 +29,7 @@ const Dashboard = () => {
             const currentArtists = data[index].artists.map((currentAlbum) => {
                 return currentAlbum.name;
             });
-            const smallestImage = data[index].images.reduce((smallest, image) => {
-                if (image.height < smallest.height) return image
-                return smallest
-            }, data[index].images[0])
+            const smallestImage = getSmallestImage(data[index]);
             albums.push({
                 id: data[index].id,
                 albumName: data[index].name,
@@ -44,7 +41,6 @@ const Dashboard = () => {
     }, [data]);
 
     useEffect(() => {
-
         setCategories(categories.map((category) => {
             const smallestImage = category.icons.reduce((smallest, image) => {
                 if (image.height < smallest.height) return image
@@ -61,14 +57,11 @@ const Dashboard = () => {
     useEffect(() => {
         if (!playlistsToHandle) return;
         setPlaylists(playlistsToHandle.map((playlist) => {
-            const smallestImage = playlist.images.reduce((smallest, image) => {
-                if (image.height > smallest.height) return image
-                return smallest;
-            }, playlist.images[0]);
+            const biggestImage = geBiggestImage(playlist);
             return {
                 name: playlist.name,
                 description: playlist.description,
-                playlistImage: smallestImage.url,
+                playlistImage: biggestImage.url,
                 total: playlist.tracks.total,
                 uri: playlist.id,
                 backgroundColor: getRandomColor()

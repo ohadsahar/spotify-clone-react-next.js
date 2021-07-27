@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { formatMinutes } from 'utils/util.service';
 import BackButton from '../BackButton/BackButton';
 import {
     AlbumCardInfo, CurrentAlbumWrapper, TrackInfo, TracksWrapper, TrackWrapper
 } from './StyledAlbum';
 
 const Album = ({ currentAlbum, changeTrack }) => {
+
     const currentTrack = useSelector(state => state.player.currentTrack);
     const [currentTrackName, setCurrentTrackName] = useState();
 
@@ -14,15 +16,7 @@ const Album = ({ currentAlbum, changeTrack }) => {
         setCurrentTrackName(currentTrack.name);
     }, [currentTrack]);
 
-    const formatMinutes = (duration) => {
-        const timeInSeconds = Math.ceil(duration / 1000);
-        const minutes = Math.round((timeInSeconds / 60));
-        let seconds = Math.round((timeInSeconds % 60));
-        seconds = seconds < 10 ? `0${seconds}` : seconds;
-        return `${minutes}:${seconds}`;
-    }
     return (
-
         <CurrentAlbumWrapper>
             <BackButton />
             <AlbumCardInfo>
@@ -51,8 +45,6 @@ const Album = ({ currentAlbum, changeTrack }) => {
                 ))}
             </TracksWrapper>
         </CurrentAlbumWrapper>
-
-
     )
 }
 

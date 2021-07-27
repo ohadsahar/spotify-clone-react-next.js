@@ -2,6 +2,7 @@ import PlayListPageItem from '@/components/PlayListPageItem/PlayListPageItem';
 import { setCurrentTrack } from '@/store/actions/player.actions';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getSmallestImage } from 'utils/util.service';
 import BackButton from '../BackButton/BackButton';
 import Loading from '../Loading/loading';
 import { ArtistPlayListWrapper, PlaylistPageWrapper } from './StyledPlaylistPage';
@@ -20,10 +21,7 @@ const PlaylistPage = () => {
         };
 
         const tracks = playlistTracks.map(({ track }) => {
-            const smallestImage = track.album.images.reduce((smallest, image) => {
-                if (image.height < smallest.height) return image
-                return smallest;
-            }, track.album.images[0]);
+            const smallestImage = getSmallestImage(track.album);
             return {
                 name: track.name,
                 duration: track.duration_ms,
@@ -52,8 +50,6 @@ const PlaylistPage = () => {
                     ))}
                 </PlaylistPageWrapper> : <Loading />}
         </div>
-
-
     )
 }
 

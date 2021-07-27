@@ -67,7 +67,6 @@ export const TrackInfo = styled.div`
     letter-spacing: 0.5ch;
     }
 }
-
 `;
 
 export const AlbumCardInfo = styled.div`
