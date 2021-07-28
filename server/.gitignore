@@ -17,6 +17,7 @@
 src/config
 src/env
 /logs
+/.idea
 
 
 # production
