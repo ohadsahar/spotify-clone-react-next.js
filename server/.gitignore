@@ -16,6 +16,7 @@
 /config
 src/config
 src/env
+/logs
 
 
 # production
