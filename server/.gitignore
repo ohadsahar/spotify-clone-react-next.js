@@ -15,6 +15,7 @@
 /env
 /config
 src/config
+src/env
 
 
 # production
