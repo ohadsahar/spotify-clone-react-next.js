@@ -10,6 +10,7 @@ const resService = Container.get(ResHandlerService);
 
 export const login = async (req: Request, res: Response) => {
 	try {
+
 		const transformed = plainToClass(LoginDTO, req.body);
 		const result = await authService.login(transformed);
 		return resService.handleSuccess(res, result);
