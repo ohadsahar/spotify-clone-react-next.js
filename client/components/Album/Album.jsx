@@ -21,7 +21,7 @@ const Album = ({ currentAlbum, changeTrack }) => {
             <BackButton />
             <AlbumCardInfo>
                 <img src={currentAlbum?.albumImage} />
-                <h2>Current Album - {currentAlbum?.name}</h2>
+                <h2>{currentAlbum?.name}</h2>
             </AlbumCardInfo>
             <TracksWrapper>
                 {currentAlbum && currentAlbum?.tracks?.map((track, index) => (

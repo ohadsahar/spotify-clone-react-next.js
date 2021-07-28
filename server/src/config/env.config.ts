@@ -5,7 +5,7 @@ const argv: ParsedArgs = minimist(process.argv.slice(2));
 
 const constants = {
 	spotifyAPI: {
-		uri: 'http://localhost:3005',
+		uri: 'https://spotify-clone-ohad-sahar.netlify.app/',
 		clientID: '88bcc79b09b040c6b8f86b914ddd739f',
 		clientSecret: '5c3521ec0d904cad8eefa45f4db81082'
 	}

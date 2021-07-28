@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
           font-family: 'Rubik', sans-serif;
-            font-size: 10px;
+           font-size: 10px;
     }
 
     p {
@@ -28,7 +28,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     .PlayerRSWP {
         background-color: #191414 !important;
-        /* min-height: 6.5rem !important; */
     }
 
     .rswp__toggle {

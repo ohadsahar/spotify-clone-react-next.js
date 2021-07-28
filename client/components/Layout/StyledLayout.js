@@ -13,11 +13,11 @@ export const MainContentWrapper = styled.div`
   background-color: ${props => props.theme.colors.main};
 `;
 export const SideContentWrapper = styled.div`
-  width: 15%;
+  width: 20%;
   height: 100vh;
 
-  @media(max-width:768px) {
-        width: 0%;
+  @media(max-width:767px) {
+    width: 0%;
         visibility: hidden;
     }
 `;

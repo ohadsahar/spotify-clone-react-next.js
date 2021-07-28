@@ -13,6 +13,10 @@ transition: .5s ease-in-out;
     transition: .5s ease-in-out;
     background-color: ${props => props.theme.colors.hoverCardColor}
 }
+
+@media(max-width:768px) {
+    width: 80%;
+}
 `;
 
 export const ArtistInfoWrapper = styled.section`
@@ -46,8 +50,8 @@ export const IconWrapper = styled.div`
 position: absolute;
 background-color: ${props => props.theme.colors.secondary};
 border-radius: 50%;
-width: 4.8rem;
-height: 4.8rem;
+width: 48px;
+height: 48px;
 display: flex;
 right:1rem;
 bottom: 1rem;

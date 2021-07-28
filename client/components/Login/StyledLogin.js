@@ -7,6 +7,10 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+
+@media(max-width:768px) {
+    height:100%;
+}
  p {
      width: 85%;
      color: ${props => props.theme.colors.secondary};
@@ -29,6 +33,10 @@ flex-direction: column;
      width: 50%;
      @media(max-width:768px) {
          width: 100%;
+     }
+     
+     @media(max-width:500px) {
+         width: 75%;
      }
  }
 `;

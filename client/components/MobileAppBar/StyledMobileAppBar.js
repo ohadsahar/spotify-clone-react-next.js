@@ -5,7 +5,7 @@ background-color: ${props => props.theme.colors.hoverCardColor};
     height: 64px;
     width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     @media(min-width:768px) {
         visibility: hidden;
     }

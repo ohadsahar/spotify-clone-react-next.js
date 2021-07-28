@@ -1,3 +1,4 @@
+import { disconnect } from '@/store/actions/auth.actions';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';

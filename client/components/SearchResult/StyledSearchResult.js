@@ -11,10 +11,10 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   padding-top: 1rem;
-    padding-left: .3rem;
    
    h1 {
      color: white;
+     margin-left:.5rem;
    }
 `;
 
